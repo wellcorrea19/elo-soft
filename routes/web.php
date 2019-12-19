@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('pages.dashboard');
+})->name('dashboard');
 
-Route::get('/fat-fiscal', function () {
-    return view('fat-fiscal');
-});
+Route::get('/faturamento', 'FaturamentoController@index')->name('faturamento');
+
+Route::get('/operacional', 'OperacionalController@index')->name('operacional');
 
 Route::get('/login', function () {
     return view('login');
