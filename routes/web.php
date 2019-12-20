@@ -17,10 +17,10 @@ Route::get('/', function () {
 
 Route::get('/faturamento', 'FaturamentoController@index')->name('faturamento');
 
+Route::get('/getfaturamento', 'FaturamentoController@getfaturamento')->name('getfaturamento');
+
 Route::get('/operacional', 'OperacionalController@index')->name('operacional');
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', 'LoginController@index')->name('login');
 
 

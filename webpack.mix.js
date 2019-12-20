@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 mix
     .js(['resources/js/app.js'], 'public/js')
-    .extract(['jquery', 'bootstrap', 'lodash', 'jquery-ui', 'popper.js', 'izitoast', 'select2'])
+    .extract(['jquery', 'bootstrap', 'lodash', 'jquery-ui', 'popper.js', 'izitoast', 'select2', 'chart.js'])
     .autoload({
         jquery: ['$', 'window.jQuery', 'jQuery'],
         popper: ['Popper'],
