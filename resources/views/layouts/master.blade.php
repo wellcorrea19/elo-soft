@@ -26,6 +26,10 @@
         <script src="{{ mix('js/vendor.min.js') }}"></script>
         <script src="{{ mix('/js/app.js') }}"></script>
         <!-- /js -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
     </head>
     <body class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 

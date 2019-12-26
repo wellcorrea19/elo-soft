@@ -28,7 +28,7 @@ class FaturamentoController extends Controller
         $client = new Client();
         $client->setDefaultOption('verify', 'C:\dev\app-teste\resources\cert\cacert.pem');
         $res = $client->get(
-            env('API_URL').'/getFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal
+            env('API_URL').'{{ csrf_token() }}/getFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal
         );
         return response($res->getBody());
     }
