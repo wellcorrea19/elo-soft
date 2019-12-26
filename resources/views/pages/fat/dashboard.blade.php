@@ -98,7 +98,7 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Faturamento Por Frete
+                                Faturamento Gerencial Por Cliente
                             </div>
                         </div>
                         <div class="tab-content">
@@ -392,6 +392,7 @@
         </div>
     </div>
 
+<!--  -->
     <script>
         $.get('/getfaturamento?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatfiscal);
