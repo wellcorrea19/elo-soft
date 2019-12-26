@@ -21,6 +21,6 @@ Route::get('/getfaturamento', 'FaturamentoController@getfaturamento')->name('get
 
 Route::get('/operacional', 'OperacionalController@index')->name('operacional');
 
-Route::get('/login', 'LoginController@index')->name('login');
+Route::get('/login', 'Auth/LoginController@index')->name('login');
 
 

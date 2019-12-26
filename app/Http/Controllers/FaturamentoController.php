@@ -15,10 +15,22 @@ class FaturamentoController extends Controller
         $datainicial = $request->input('datainicial');
         $datafinal =  $request->input('datafinal');
         $client = new Client();
-        $client->setDefaultOption('verify', 'C:\Users\paulo\Documents\dev\app\resources\cert\cacert.pem');
+        $client->setDefaultOption('verify', 'C:\dev\app-teste\resources\cert\cacert.pem');
         $res = $client->get(
             env('API_URL').'/getFaturamento?datainicial='.$datainicial.'&datafinal='.$datafinal
         );
         return response($res->getBody());
     }
+
+    public function getFatGerencial(Request $request){
+        $datainicial = $request->input('datainicial');
+        $datafinal =  $request->input('datafinal');
+        $client = new Client();
+        $client->setDefaultOption('verify', 'C:\dev\app-teste\resources\cert\cacert.pem');
+        $res = $client->get(
+            env('API_URL').'/getFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal
+        );
+        return response($res->getBody());
+    }
+
 }

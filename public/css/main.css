@@ -46,7 +46,7 @@
 }
 
 .border-alternate {
-    border-color: #794c8a
+    border-color: #008000
 }
 
 .list-group-item-primary {
@@ -319,7 +319,7 @@ button.bg-focus:focus {
 }
 
 .bg-alternate {
-    background-color: #794c8a !important
+    background-color: #008000 !important
 }
 
 a.bg-alternate:hover,
@@ -352,7 +352,7 @@ button.bg-alternate:focus {
     --light: #eee;
     --dark: #343a40;
     --focus: #444054;
-    --alternate: #794c8a;
+    --alternate: #008000;
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
@@ -3076,8 +3076,8 @@ fieldset:disabled a.btn {
 
 .btn-alternate {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #008000;
+    border-color: #008000
 }
 
 .btn-alternate:hover {
@@ -3094,8 +3094,8 @@ fieldset:disabled a.btn {
 .btn-alternate.disabled,
 .btn-alternate:disabled {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #008000;
+    border-color: #008000
 }
 
 .btn-alternate:not(:disabled):not(.disabled):active,
@@ -3437,14 +3437,12 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-alternate {
-    color: #794c8a;
-    border-color: #794c8a
+    color: #008000;
 }
 
 .btn-outline-alternate:hover {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #008000;
 }
 
 .btn-outline-alternate:focus,
@@ -3454,7 +3452,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-alternate.disabled,
 .btn-outline-alternate:disabled {
-    color: #794c8a;
+    color: #008000;
     background-color: transparent
 }
 
@@ -3462,8 +3460,7 @@ fieldset:disabled a.btn {
 .btn-outline-alternate:not(:disabled):not(.disabled).active,
 .show>.btn-outline-alternate.dropdown-toggle {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #008000;
 }
 
 .btn-outline-alternate:not(:disabled):not(.disabled):active:focus,
@@ -5574,7 +5571,7 @@ a.badge-focus:focus {
 
 .badge-alternate {
     color: #fff;
-    background-color: #794c8a
+    background-color: #008000
 }
 
 a.badge-alternate:hover,
@@ -7008,7 +7005,7 @@ button.bg-focus:focus {
 }
 
 .bg-alternate {
-    background-color: #794c8a !important
+    background-color: #008000 !important
 }
 
 a.bg-alternate:hover,
@@ -7103,7 +7100,7 @@ button.bg-alternate:focus {
 }
 
 .border-alternate {
-    border-color: #794c8a !important
+    border-color: #008000 !important
 }
 
 .border-white {
@@ -10166,7 +10163,7 @@ a.text-focus:focus {
 }
 
 .text-alternate {
-    color: #794c8a !important
+    color: #008000 !important
 }
 
 a.text-alternate:hover,
@@ -11801,7 +11798,7 @@ button,
 }
 
 .bg-arielle-smile {
-    background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%) !important
+    background-color:  #a79f9f !important
 }
 
 .bg-plum-plate {
@@ -11845,7 +11842,7 @@ button,
 }
 
 .bg-midnight-bloom {
-    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%) !important
+    background-color: #32ca32 !important
 }
 
 .bg-night-sky {
@@ -14832,14 +14829,14 @@ body {
 }
 
 .btn-outline-alternate {
-    color: #794c8a;
-    border-color: #794c8a
+    color: #008000;
+    border-color: #008000
 }
 
 .btn-outline-alternate:hover {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #008000;
+    border-color: #008000
 }
 
 .btn-outline-alternate:focus,
@@ -14849,7 +14846,7 @@ body {
 
 .btn-outline-alternate.disabled,
 .btn-outline-alternate:disabled {
-    color: #794c8a;
+    color: #008000;
     background-color: transparent
 }
 
@@ -14857,8 +14854,8 @@ body {
 .btn-outline-alternate:not(:disabled):not(.disabled).active,
 .show>.btn-outline-alternate.dropdown-toggle {
     color: #fff;
-    background-color: #794c8a;
-    border-color: #794c8a
+    background-color: #008000;
+    border-color: #008000
 }
 
 .btn-outline-alternate:not(:disabled):not(.disabled):active:focus,
@@ -15065,7 +15062,7 @@ a.badge-focus:focus {
 
 .badge-alternate {
     color: #fff;
-    background-color: #794c8a
+    background-color: #008000
 }
 
 a.badge-alternate:hover,
@@ -24615,7 +24612,7 @@ a.fc-more:hover {
 /* Footer */
 
 .site-footer {
-    background: #3f6ad8;
+    background: #008000;
     color: #fff;
     padding: 15px 0;
 }
