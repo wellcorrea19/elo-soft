@@ -19,8 +19,14 @@ Route::get('/faturamento', 'FaturamentoController@index')->name('faturamento');
 
 Route::get('/getfaturamento', 'FaturamentoController@getfaturamento')->name('getfaturamento');
 
+Route::get('/getgerencial', 'FaturamentoController@getFatGerencial')->name('getFatGerencial');
+
 Route::get('/operacional', 'OperacionalController@index')->name('operacional');
 
-Route::get('/login', 'Auth/LoginController@index')->name('login');
+Route::get('/login', 'Auth\Rest\LoginController@index')->name('login');
+
+Route::post('/loged', 'Auth\Rest\LoginController@login')->name('loged');
+
+//Route::post('/login', 'Auth\Rest\LoginController@token')->name('apilogin');
 
 

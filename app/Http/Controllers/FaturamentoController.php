@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use function Psy\debug;
 
 class FaturamentoController extends Controller
 {
@@ -15,7 +16,7 @@ class FaturamentoController extends Controller
         $datainicial = $request->input('datainicial');
         $datafinal =  $request->input('datafinal');
         $client = new Client();
-        $client->setDefaultOption('verify', 'C:\dev\app-teste\resources\cert\cacert.pem');
+        $client->setDefaultOption('verify', env('SSL'));
         $res = $client->get(
             env('API_URL').'/getFaturamento?datainicial='.$datainicial.'&datafinal='.$datafinal
         );
@@ -23,14 +24,16 @@ class FaturamentoController extends Controller
     }
 
     public function getFatGerencial(Request $request){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
         $datainicial = $request->input('datainicial');
         $datafinal =  $request->input('datafinal');
-        $client = new Client();
-        $client->setDefaultOption('verify', 'C:\dev\app-teste\resources\cert\cacert.pem');
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', env('SSL'));
         $res = $client->get(
-            env('API_URL').'{{ csrf_token() }}/getFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal
-        );
+                        '/getFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+                        Array('headers' => $headers)
+                    );
         return response($res->getBody());
     }
-
 }

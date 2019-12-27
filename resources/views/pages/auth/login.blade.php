@@ -20,7 +20,7 @@
   <!-- Custom styles for this template -->
   <link href="/css/style.css" rel="stylesheet">
   <link href="/css/style-responsive.css" rel="stylesheet">
-  
+
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -35,12 +35,13 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="/">
+      <form class="form-login" action="{{ route('loged') }}" method="post">
+          {!! csrf_field() !!}
         <h2 class="form-login-heading">Efetue seu login!</h2>
         <div class="login-wrap">
-          <input type="text" class="form-control" placeholder="Email" autofocus>
+          <input type="text" class="form-control" name="email" placeholder="Email" autofocus>
           <br>
-          <input type="password" class="form-control" placeholder="Senha">
+          <input type="password"  name="password" class="form-control" placeholder="Senha">
           <label class="checkbox">
             <input type="checkbox" value="remember-me"> Lembrar-me
             <span class="pull-right">
