@@ -94,6 +94,34 @@
                             <canvas id="chart-doughnut-1"></canvas>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-md-12 col-lg-6">
+                    <div class="mb-3 card">
+                        <div class="card-header-tab card-header">
+                            <div class="card-header-title m-auto">
+                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
+                                Faturamento Gerencial
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="chart-doughnut-2"></canvas>
+                        </div>
+                    </div>
+                    <!-- <div class="mb-3 card">
+                        <div class="card-header-tab card-header">
+                            <div class="card-header-title m-auto">
+                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
+                                Faturamento Por Carga
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="chart-doughnut"></canvas>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="col-md-12 col-lg-12">
                     <div class="mb-3 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
@@ -105,7 +133,7 @@
                             <div class="tab-pane fade active show" id="tab-eg-55">
                                 <div class="widget-chart p-3">
                                     <div>
-                                        <canvas id="chart-line"></canvas>
+                                        <canvas id="chart-bar"></canvas>
                                     </div>
                                     <h6 class="card-title" style="margin: 20px;">Ranking Clientes</h6>
                                     <div class="scroll-area-sm">
@@ -115,11 +143,10 @@
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
-                                                                <img width="42" class="rounded-circle" src="/imgs/avatars/9.jpg" alt="">
                                                             </div>
                                                             <div class="widget-content-left">
                                                                 <div class="widget-heading">Ella-Rose Henry</div>
-                                                                <div class="widget-subheading">Web Developer</div>
+                                                                <!-- <div class="widget-subheading">Web Developer</div> -->
                                                             </div>
                                                             <div class="widget-content-right">
                                                                 <div class="font-size-xlg text-muted">
@@ -137,11 +164,10 @@
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
-                                                                <img width="42" class="rounded-circle" src="/imgs/avatars/5.jpg" alt="">
                                                             </div>
                                                             <div class="widget-content-left">
                                                                 <div class="widget-heading">Ruben Tillman</div>
-                                                                <div class="widget-subheading">UI Designer</div>
+                                                                <!-- <div class="widget-subheading">UI Designer</div> -->
                                                             </div>
                                                             <div class="widget-content-right">
                                                                 <div class="font-size-xlg text-muted">
@@ -159,11 +185,10 @@
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
-                                                                <img width="42" class="rounded-circle" src="/imgs/avatars/4.jpg" alt="">
                                                             </div>
                                                             <div class="widget-content-left">
                                                                 <div class="widget-heading">Vinnie Wagstaff</div>
-                                                                <div class="widget-subheading">Java Programmer</div>
+                                                                <!-- <div class="widget-subheading">Java Programmer</div> -->
                                                             </div>
                                                             <div class="widget-content-right">
                                                                 <div class="font-size-xlg text-muted">
@@ -181,11 +206,10 @@
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
-                                                                <img width="42" class="rounded-circle" src="/imgs/avatars/3.jpg" alt="">
                                                             </div>
                                                             <div class="widget-content-left">
                                                                 <div class="widget-heading">Ella-Rose Henry</div>
-                                                                <div class="widget-subheading">Web Developer</div>
+                                                                <!-- <div class="widget-subheading">Web Developer</div> -->
                                                             </div>
                                                             <div class="widget-content-right">
                                                                 <div class="font-size-xlg text-muted">
@@ -203,11 +227,10 @@
                                                     <div class="widget-content p-0">
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
-                                                                <img width="42" class="rounded-circle" src="/imgs/avatars/2.jpg" alt="">
                                                             </div>
                                                             <div class="widget-content-left">
                                                                 <div class="widget-heading">Ruben Tillman</div>
-                                                                <div class="widget-subheading">UI Designer</div>
+                                                                <!-- <div class="widget-subheading">UI Designer</div> -->
                                                             </div>
                                                             <div class="widget-content-right">
                                                                 <div class="font-size-xlg text-muted">
@@ -236,32 +259,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-12 col-lg-6">
-                    <div class="mb-3 card">
-                        <div class="card-header-tab card-header">
-                            <div class="card-header-title m-auto">
-                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Faturamento Gerencial
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-doughnut-2"></canvas>
-                        </div>
-                    </div>
-                    <!-- <div class="mb-3 card">
-                        <div class="card-header-tab card-header">
-                            <div class="card-header-title m-auto">
-                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Faturamento Por Carga
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-doughnut"></canvas>
-                        </div>
-                    </div> -->
-                </div>
-
             </div>
 
             <!-- <div class="row">
@@ -416,17 +413,17 @@
     </script>
 
     <script>
-        $.get('{{ csrf_token() }}/getFatGerencial?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
-            console.log(JSON.parse(res).fatfiscal);
-            data = JSON.parse(res).fatfiscal;
+        $.get('/getfatgerencial?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+            console.log(JSON.parse(res).fatgerencial);
+            data = JSON.parse(res).fatgerencial;
             var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: [data[0].LABEL, data[1].LABEL],
+                    labels: [data[0].LABEL, data[1].LABEL, data[2].LABEL],
                     datasets: [{
                         label: 'Gráfico de Dados',
-                        data: [data[0].VALOR, data[1].VALOR],
+                        data: [data[0].VALOR, data[1].VALOR, data[2].VALOR],
                         backgroundColor: [
                             'rgba(50, 202, 50)',
                             'rgba(167, 159, 159, 1)',
@@ -441,7 +438,7 @@
         $.get('/getfaturamento?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatfiscal);
             data = JSON.parse(res).fatfiscal;
-            var ctx = document.getElementById('chart-line').getContext('2d');
+            var ctx = document.getElementById('chart-bar').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {

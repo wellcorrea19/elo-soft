@@ -70,7 +70,7 @@
                 <div class="header-btn-lg pr-0">
                     <div class="widget-content p-0">
                         <div class="widget-content-wrapper">
-                            <div class="widget-content-left">
+                            <!-- <div class="widget-content-left">
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
                                         <img width="42" class="rounded-circle" src="/imgs/avatars/1.jpg" alt="">
@@ -86,14 +86,14 @@
                                         <button type="button" tabindex="0" class="dropdown-item" href="log">Logout</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="widget-content-left  ml-3 header-user-info">
                                 <div class="widget-heading">
                                     Maurícia Senna
                                 </div>
-                                <div class="widget-subheading">
+                                <!-- <div class="widget-subheading">
                                     Designer Gráfico
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

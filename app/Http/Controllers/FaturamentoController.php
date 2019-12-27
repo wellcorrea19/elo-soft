@@ -13,9 +13,11 @@ class FaturamentoController extends Controller
     }
 
     public function getFaturamento(Request $request){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
         $datainicial = $request->input('datainicial');
         $datafinal =  $request->input('datafinal');
-        $client = new Client();
+        $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', env('SSL'));
         $res = $client->get(
             env('API_URL').'/getFaturamento?datainicial='.$datainicial.'&datafinal='.$datafinal
@@ -31,9 +33,23 @@ class FaturamentoController extends Controller
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', env('SSL'));
         $res = $client->get(
-                        '/getFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal ,
-                        Array('headers' => $headers)
-                    );
+            '/getFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            Array('headers' => $headers)
+        );
+        return response($res->getBody());
+    }
+
+    public function getFatGerencialCliente(Request $request){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $datainicial = $request->input('datainicial');
+        $datafinal =  $request->input('datafinal');
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', env('SSL'));
+        $res = $client->get(
+            '/getFatGerencialCliente?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            Array('headers' => $headers)
+        );
         return response($res->getBody());
     }
 }

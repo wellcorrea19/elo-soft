@@ -19,7 +19,7 @@ Route::get('/faturamento', 'FaturamentoController@index')->name('faturamento');
 
 Route::get('/getfaturamento', 'FaturamentoController@getfaturamento')->name('getfaturamento');
 
-Route::get('/getgerencial', 'FaturamentoController@getFatGerencial')->name('getFatGerencial');
+Route::get('/getfatgerencial', 'FaturamentoController@getFatGerencial')->name('getFatGerencial');
 
 Route::get('/operacional', 'OperacionalController@index')->name('operacional');
 

@@ -44,7 +44,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-        $email =  $request->get('email');
+        $email =  $request->get('usuario');
         $password =  $request->get('password');
         $this->token($email,$password);
         if ( session('token')){
