@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <!-- meta -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="Content-Language" content="pt-br">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-        <meta name="description" content="This is an example dashboard created using build-in elements and components.">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <!-- /meta -->
-        <title>MMSoftwares</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link type="text/css" rel="stylesheet" href="{{ asset('Icon-font-7/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">
-        <!-- /Fonts -->
-        <!-- css -->
-        <link type="text/css" rel="stylesheet" href="{{ mix('css/app.min.css') }}">
-        <link href="/css/main.css" rel="stylesheet">
-        <!-- /css -->
-        <!-- js -->
-        <script src="{{ mix('js/manifest.min.js') }}"></script>
-        <script src="{{ mix('js/vendor.min.js') }}"></script>
-        <script src="{{ mix('/js/app.js') }}"></script>
-        <!-- /js -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+<head>
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="pt-br">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <meta name="description" content="This is an example dashboard created using build-in elements and components.">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- /meta -->
+    <title>MMSoftwares</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ asset('Icon-font-7/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">
+    <!-- /Fonts -->
+    <!-- css -->
+    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.min.css') }}">
+    <link href="/css/main.css" rel="stylesheet">
+    <!-- /css -->
+    <!-- js -->
+    <script src="{{ mix('js/manifest.min.js') }}"></script>
+    <script src="{{ mix('js/vendor.min.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
+    <!-- /js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
-    </head>
-    <body class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+</head>
+<body class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
 
-        <!-- Header start -->
-        <div class="app-header header-shadow">
-            <div class="app-header__logo">
-                <div class="logo-src"></div>
-                <div class="header__pane ml-auto">
-                    <div>
-                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+<!-- Header start -->
+<div class="app-header header-shadow">
+    <div class="app-header__logo">
+        <div class="logo-src"></div>
+        <div class="header__pane ml-auto">
+            <div>
+                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
-                        </button>
-                    </div>
-                </div>
+                </button>
             </div>
-            <div class="app-header__mobile-menu">
-                <div>
-                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+        </div>
+    </div>
+    <div class="app-header__mobile-menu">
+        <div>
+            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                         <span class="hamburger-box">
                             <span class="hamburger-inner"></span>
                         </span>
-                    </button>
-                </div>
-            </div>
-            <div class="app-header__menu">
+            </button>
+        </div>
+    </div>
+    <div class="app-header__menu">
                 <span>
                     <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
                         <span class="btn-icon-wrapper">
@@ -64,105 +64,111 @@
                         </span>
                     </button>
                 </span>
-            </div>
-            <div class="app-header__content">
-            <div class="app-header-right">
-                <div class="header-btn-lg pr-0">
-                    <div class="widget-content p-0">
-                        <div class="widget-content-wrapper">
-                            <!-- <div class="widget-content-left">
-                                <div class="btn-group">
-                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                        <img width="42" class="rounded-circle" src="/imgs/avatars/1.jpg" alt="">
-                                        <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                    </a>
-                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                        <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                        <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                        <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                        <div tabindex="-1" class="dropdown-divider"></div>
-                                        <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
-                                        <button type="button" tabindex="0" class="dropdown-item" href="log">Logout</button>
-                                    </div>
+    </div>
+    <div class="app-header__content">
+        <div class="app-header-right">
+            <div class="header-btn-lg pr-0">
+                <div class="widget-content p-0">
+                    <div class="widget-content-wrapper">
+                        <!-- <div class="widget-content-left">
+                            <div class="btn-group">
+                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                    <img width="42" class="rounded-circle" src="/imgs/avatars/1.jpg" alt="">
+                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                </a>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                    <button type="button" tabindex="0" class="dropdown-item">User Account</button>
+                                    <button type="button" tabindex="0" class="dropdown-item">Settings</button>
+                                    <h6 tabindex="-1" class="dropdown-header">Header</h6>
+                                    <button type="button" tabindex="0" class="dropdown-item">Actions</button>
+                                    <div tabindex="-1" class="dropdown-divider"></div>
+                                    <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
+                                    <button type="button" tabindex="0" class="dropdown-item" href="log">Logout</button>
                                 </div>
-                            </div> -->
-                            <div class="widget-content-left  ml-3 header-user-info">
-                                <div class="widget-heading">
-                                    Maurícia Senna
-                                </div>
-                                <!-- <div class="widget-subheading">
-                                    Designer Gráfico
-                                </div> -->
                             </div>
+                        </div> -->
+                        <div class="widget-content-left  ml-3 header-user-info">
+                            <div class="widget-heading">
+                                {{Auth::user()->email}}
+                            </div>
+                            <!-- <div class="widget-subheading">
+                                Designer Gráfico
+                            </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        <!-- Header end -->
-
-        <!-- main start -->
-        <div class="app-main">
-
-            <!-- Sidebar start -->
-            <div class="app-sidebar sidebar-shadow">
-                <div class="scrollbar-sidebar">
-                    <div class="app-sidebar__inner">
-                        <ul class="vertical-nav-menu">
-                            <li class="app-sidebar__heading">Dashboard</li>
-                            <li>
-                                <a href="/" @if (Route::is('dashboard')) class="mm-active"  @endif>
-                                    <i class="metismenu-icon pe-7s-home"></i>
-                                    Home
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading">Power BI</li>
-                            <li>
-                                <a href="{{route('faturamento')}}" @if (Route::is('faturamento')) class="mm-active"  @endif>
-                                    <i class="metismenu-icon pe-7s-graph"></i>
-                                    Faturamentos
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('operacional')}}"  @if (Route::is('operacional')) class="mm-active"  @endif>
-                                    <i class="metismenu-icon pe-7s-graph3"></i>
-                                    Operacional
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading">Configurações</li>
-                            <li>
-                                <a href="/login">
-                                    <i class="metismenu-icon pe-7s-power"></i>
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- Sidebar end -->
-
-            <!-- content start -->
-            @yield('content')
-            <!-- content end -->
-        </div>
-        <!-- main end -->
-
-        <!--footer start-->
-        <footer class="site-footer">
-            <div class="text-center">
-                <p>
-                    &copy; Copyrights <strong>MMSoftwares</strong>. Todos os direitos reservados.
-                </p>
-                <a href="/#" class="go-top">
-                <i class="fa fa-angle-up"></i>
-                </a>
-            </div>
-        </footer>
-        <!--footer end-->
     </div>
-    <script src="{{ mix('/js/main.js') }}"></script>
+</div>
+<!-- Header end -->
+
+<!-- main start -->
+<div class="app-main">
+
+    <!-- Sidebar start -->
+    <div class="app-sidebar sidebar-shadow">
+        <div class="scrollbar-sidebar">
+            <div class="app-sidebar__inner">
+                <ul class="vertical-nav-menu">
+                    <li class="app-sidebar__heading">Dashboard</li>
+                    <li>
+                        <a href="/" @if (Route::is('dashboard')) class="mm-active"  @endif>
+                            <i class="metismenu-icon pe-7s-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="app-sidebar__heading">Power BI</li>
+                    <li>
+                        <a href="{{route('faturamento')}}" @if (Route::is('faturamento')) class="mm-active"  @endif>
+                            <i class="metismenu-icon pe-7s-graph"></i>
+                            Faturamentos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('operacional')}}"  @if (Route::is('operacional')) class="mm-active"  @endif>
+                            <i class="metismenu-icon pe-7s-graph3"></i>
+                            Operacional
+                        </a>
+                    </li>
+                    <li class="app-sidebar__heading">Configurações</li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            <i class="metismenu-icon pe-7s-power"></i>
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Sidebar end -->
+
+    <!-- content start -->
+@yield('content')
+<!-- content end -->
+</div>
+<!-- main end -->
+
+<!--footer start-->
+<footer class="site-footer">
+    <div class="text-center">
+        <p>
+            &copy; Copyrights <strong>MMSoftwares</strong>. Todos os direitos reservados.
+        </p>
+        <a href="/#" class="go-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+    </div>
+</footer>
+<!--footer end-->
+</div>
+<script src="{{ mix('/js/main.js') }}"></script>
 </body>
 </html>
