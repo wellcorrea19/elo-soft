@@ -243,7 +243,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </li>                                                          
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -391,7 +391,7 @@
 
 <!--  -->
     <script>
-        $.get('/getfaturamento?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+        $.get('/faturamento/get/faturamento?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatfiscal);
             data = JSON.parse(res).fatfiscal;
             var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
@@ -413,7 +413,7 @@
     </script>
 
     <script>
-        $.get('/getfatgerencial?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+        $.get('/faturamento/get/gerencial?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatgerencial);
             data = JSON.parse(res).fatgerencial;
             var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
@@ -435,7 +435,7 @@
     </script>
 
     <script>
-        $.get('/getfaturamento?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+        $.get('/faturamento/get/faturamento?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatfiscal);
             data = JSON.parse(res).fatfiscal;
             var ctx = document.getElementById('chart-bar').getContext('2d');
@@ -466,7 +466,7 @@
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal 
+    // When the user clicks the button, open the modal
     btn.onclick = function() {
     modal.style.display = "block";
     }
@@ -488,9 +488,9 @@
     <!-- <script src="/js/moment.min.js"></script> -->
     <!-- <script src="/js/bootstrap-datetimepicker.min.js"></script> -->
     <script type="text/javascript">
-        $('.date').datepicker({  
+        $('.date').datepicker({
         format: 'dd-mm-yyyy'
-        });  
+        });
     </script>
 
 @endsection
