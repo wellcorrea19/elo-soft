@@ -435,7 +435,7 @@
     </script>
 
     <script>
-        $.get('/faturamento/get/faturamento?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+        $.get('/faturamento/get/gerencialcliente?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatfiscal);
             data = JSON.parse(res).fatfiscal;
             var ctx = document.getElementById('chart-bar').getContext('2d');
