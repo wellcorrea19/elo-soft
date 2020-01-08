@@ -94,6 +94,16 @@
                             <canvas id="chart-doughnut-1"></canvas>
                         </div>
                     </div>
+                    <div class="col-md-12 col-lg-12">
+                        <div class="mb-3 card">
+                            <div class="card-header-tab card-header">
+                                <div class="card-header-title m-auto">
+                                    <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
+                                    Relatório Operacional Por Tipo De Frete Quantitativo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-12 col-lg-6">
@@ -117,17 +127,6 @@
                         </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-3"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 col-lg-12">
-                    <div class="mb-3 card">
-                        <div class="card-header-tab card-header">
-                            <div class="card-header-title m-auto">
-                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Operacional Por Tipo De Frete Quantitativo
-                            </div>
                         </div>
                     </div>
                 </div>
