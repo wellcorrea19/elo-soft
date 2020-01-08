@@ -25,8 +25,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-xl-6">
+            <!-- <div class="row"> -->
+                <!-- <div class="col-md-6 col-xl-6">
                     <div class="card mb-3 widget-content bg-midnight-bloom">
                         <div class="widget-content-wrapper text-white">
                             <div class="widget-content-left">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="col-md-6 col-xl-6">
                     <div class="card mb-3 widget-content bg-arielle-smile">
                         <div class="widget-content-wrapper text-white">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div> -->
-            </div>
+            <!-- </div> -->
 
             <div class="row">
                 <div class="col-md-12 col-lg-12">
@@ -82,7 +82,7 @@
             </div>
 
             <div class="row">
-                <!-- <div class="col-md-12 col-lg-6">
+                <div class="col-md-12 col-lg-6">
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
@@ -94,10 +94,10 @@
                             <canvas id="chart-doughnut-1"></canvas>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <div class="col-md-12 col-lg-6">
-                    <!-- <div class="mb-3 card">
+                    <div class="mb-3 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
@@ -107,7 +107,7 @@
                         <div class="card-body">
                             <canvas id="chart-doughnut-2"></canvas>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="mb-3 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
