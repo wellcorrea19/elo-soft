@@ -18,7 +18,7 @@ class OperacionalController extends Controller
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', env('SSL'));
         $res = $client->get(
-            '/getPedidoLucroBruTipoCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            '/getPedidoLucroBruTCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
             Array('headers' => $headers)
         );
         return response($res->getBody());
@@ -33,7 +33,7 @@ class OperacionalController extends Controller
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', env('SSL'));
         $res = $client->get(
-            '/getPedidoLucroLiqTipoCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            '/getPedidoLucroLiqTCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
             Array('headers' => $headers)
         );
         return response($res->getBody());
@@ -48,7 +48,7 @@ class OperacionalController extends Controller
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', env('SSL'));
         $res = $client->get(
-            '/getPedidoQtdeModalidade?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            '/getPedidoQtdeMod?datainicial='.$datainicial.'&datafinal='.$datafinal ,
             Array('headers' => $headers)
         );
         return response($res->getBody());
@@ -63,7 +63,7 @@ class OperacionalController extends Controller
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', env('SSL'));
         $res = $client->get(
-            '/getPedidoQtdeTipoFrete?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            '/getPedidoQtdeTFrete?datainicial='.$datainicial.'&datafinal='.$datafinal ,
             Array('headers' => $headers)
         );
         return response($res->getBody());
