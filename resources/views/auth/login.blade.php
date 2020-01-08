@@ -33,7 +33,7 @@
             @csrf
             <h2 class="form-login-heading">Efetue seu login!</h2>
             <div class="login-wrap">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="email" autofocus placeholder="Email">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
