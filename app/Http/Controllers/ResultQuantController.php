@@ -4,41 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class OperacionalController extends Controller
+class ResultQuantController extends Controller
 {
     public function index(){
-        return view('pages.op.stts-pedido');
+        return view('pages.op.res-quant');
     }
-
-    public function getPedidoLucroBruTipoCarga(Request $request){
-        $token =  session('token');
-        $headers = [ 'Authorization' => "Bearer $token" ];
-        $datainicial = $request->input('datainicial');
-        $datafinal =  $request->input('datafinal');
-        $client = new Client(['base_url' =>  env('API_URL')]);
-        $client->setDefaultOption('verify', env('SSL'));
-        $res = $client->get(
-            '/getPedidoLucroBruTCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
-            Array('headers' => $headers)
-        );
-        return response($res->getBody());
-    }
-    // 
-
-    public function getPedidoLucroLiqTipoCarga(Request $request){
-        $token =  session('token');
-        $headers = [ 'Authorization' => "Bearer $token" ];
-        $datainicial = $request->input('datainicial');
-        $datafinal =  $request->input('datafinal');
-        $client = new Client(['base_url' =>  env('API_URL')]);
-        $client->setDefaultOption('verify', env('SSL'));
-        $res = $client->get(
-            '/getPedidoLucroLiqTCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
-            Array('headers' => $headers)
-        );
-        return response($res->getBody());
-    }
-    // 
 
     public function getPedidoQtdeModalidade(Request $request){
         $token =  session('token');
@@ -55,7 +25,7 @@ class OperacionalController extends Controller
     }
     // 
 
-    public function getPedidoQtdeTipoFrete(Request $request){
+    public function getPedidoQtdeTFrete(Request $request){
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
         $datainicial = $request->input('datainicial');
@@ -70,9 +40,19 @@ class OperacionalController extends Controller
     }
     // 
 
-    
-
-
-
+    public function getPedidoQtdeTCarga(Request $request){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $datainicial = $request->input('datainicial');
+        $datafinal =  $request->input('datafinal');
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', env('SSL'));
+        $res = $client->get(
+            '/getPedidoQtdeTCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            Array('headers' => $headers)
+        );
+        return response($res->getBody());
+    }
+    // 
 
 }

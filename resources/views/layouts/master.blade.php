@@ -18,13 +18,14 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('Icon-font-7/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">
     <!-- /Fonts -->
     <!-- css -->
-    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.min.css') }}">
-    <link href="/css/main.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/app.min.css') }}">
+    <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
     <!-- /css -->
     <!-- js -->
-    <script src="{{ mix('js/manifest.min.js') }}"></script>
-    <script src="{{ mix('js/vendor.min.js') }}"></script>
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ asset('js/manifest.min.js') }}"></script>
+    <script src="{{ asset('js/vendor.min.js') }}"></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="{{ asset('/js/main.js') }}"></script>
     <!-- /js -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -40,9 +41,9 @@
         <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
                 </button>
             </div>
         </div>
@@ -50,20 +51,20 @@
     <div class="app-header__mobile-menu">
         <div>
             <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-                        <span class="hamburger-box">
-                            <span class="hamburger-inner"></span>
-                        </span>
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
             </button>
         </div>
     </div>
     <div class="app-header__menu">
-                <span>
-                    <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                        <span class="btn-icon-wrapper">
-                            <i class="fa fa-ellipsis-v fa-w-6"></i>
-                        </span>
-                    </button>
+        <span>
+            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                <span class="btn-icon-wrapper">
+                    <i class="fa fa-ellipsis-v fa-w-6"></i>
                 </span>
+            </button>
+        </span>
     </div>
     <div class="app-header__content">
         <div class="app-header-right">
@@ -92,7 +93,7 @@
                                 {{Auth::user()->email}}
                             </div>
                             <!-- <div class="widget-subheading">
-                                Designer Gráfico
+                                Designer GrÃ¡fico
                             </div> -->
                         </div>
                     </div>
@@ -126,12 +127,33 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('operacional')}}"  @if (Route::is('operacional')) class="mm-active"  @endif>
+                        <a href="#">
                             <i class="metismenu-icon pe-7s-graph3"></i>
                             Operacional
+                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                         </a>
+                        <ul>
+                            <li>
+                                <a href="{{route('resultquant')}}"  @if (Route::is('resultquant')) class="mm-active" @endif>
+                                    <i class="metismenu-icon"></i>
+                                    Resultado Quantitativo  
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('resultlucbru')}}"  @if (Route::is('resultlucbru')) class="mm-active" @endif>
+                                    <i class="metismenu-icon"></i>
+                                    Resultado Lucro Bruto
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('resultlucliq')}}"  @if (Route::is('resultlucliq')) class="mm-active" @endif>
+                                    <i class="metismenu-icon"></i>
+                                    Resultado Lucro Liquido
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="app-sidebar__heading">Configurações</li>
+                    <li class="app-sidebar__heading">ConfiguraÃ§Ãµes</li>
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -169,6 +191,5 @@
 </footer>
 <!--footer end-->
 </div>
-<script src="{{ mix('/js/main.js') }}"></script>
 </body>
 </html>

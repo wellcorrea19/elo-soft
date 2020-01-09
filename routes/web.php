@@ -35,17 +35,31 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 
-    Route::prefix('operacional')->group(function () {
-        Route::get('/', 'OperacionalController@index')->name('operacional');
+    Route::prefix('resultquant')->group(function () {
+        Route::get('/', 'ResultQuantController@index')->name('resultquant');
+
+        Route::prefix('get')->group(function () {
+            Route::get('pedidoqtdemodalidade', 'OperacionalController@getPedidoQtdeModalidade')->name('getPedidoQtdeModalidade');
+
+            Route::get('pedidoqtdetfrete', 'OperacionalController@getPedidoQtdeModalidade')->name('getPedidoQtdeTFrete');
+
+            Route::get('pedidoqtdetcarga', 'OperacionalController@getPedidoQtdeModalidade')->name('getPedidoQtdeTCarga');
+        });
+    });
+
+    Route::prefix('resultlucbru')->group(function () {
+        Route::get('/', 'ResultLucBruController@index')->name('resultlucbru');
 
         Route::prefix('get')->group(function () {
             Route::get('pedidolucrobrutipocarga', 'OperacionalController@getPedidoLucroBruTipoCarga')->name('getfatfiscal');
+        });
+    });
 
+    Route::prefix('resultlucliq')->group(function () {
+        Route::get('/', 'ResultLucLiqController@index')->name('resultlucliq');
+
+        Route::prefix('get')->group(function () {
             Route::get('pedidolucroliqtipocarga', 'OperacionalController@getPedidoLucroLiqTipoCarga')->name('getfatgerencial');
-
-            Route::get('pedidoqtdemodalidade', 'OperacionalController@getPedidoQtdeModalidade')->name('getFatGerencialCliente');
-
-            Route::get('pedidoqtdetipofrete', 'OperacionalController@getPedidoQtdeTipoFrete')->name('getfaturamento');
         });
     });
 

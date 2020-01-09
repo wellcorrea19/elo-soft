@@ -10,7 +10,7 @@
                             <i class="pe-7s-graph icon-gradient bg-mean-fruit">
                             </i>
                         </div>
-                        <div>Operacional</div>
+                        <div>Resultado Quantitativo</div>
                     </div>
                     <div class="page-title-actions">
                         <div class="app-header-left">
@@ -87,21 +87,22 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Operacional Por Tipo de Carga Bruto
+                                Relatório Operacional Por Tipo de Carga
                             </div>
                         </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-1"></canvas>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-6">
-                        <div class="mb-3 card">
-                            <div class="card-header-tab card-header">
-                                <div class="card-header-title m-auto">
-                                    <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                    Relatório Operacional Por Tipo De Frete Quantitativo
-                                </div>
+                    <div class="main-card mb-3 card">
+                        <div class="card-header-tab card-header">
+                            <div class="card-header-title m-auto">
+                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
+                                Relatório Operacional Por Tipo De Frete
                             </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="chart-doughnut-1"></canvas>
                         </div>
                     </div>
                 </div>
@@ -111,7 +112,7 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Operacional Por Tipo de Carga Liquido
+                                Relatório Operacional Por Rota
                             </div>
                         </div>
                         <div class="card-body">
@@ -122,7 +123,7 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Operacional Por Modalidade Quantitativo
+                                Relatório Operacional Por Modalidade
                             </div>
                         </div>
                         <div class="card-body">
@@ -262,7 +263,7 @@
 
 <!--  -->
     <script>
-        $.get('/operacional/get/pedidolucrobrutipocarga?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+        $.get('/operacional/get/pedidoqtdemodalidade?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatfiscal);
             data = JSON.parse(res).fatfiscal;
             var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
@@ -284,7 +285,7 @@
     </script>
 
     <script>
-        $.get('/operacional/get/pedidolucroliqtipocarga?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+        $.get('/operacional/get/pedidoqtdetfrete?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatgerencial);
             data = JSON.parse(res).fatgerencial;
             var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
@@ -306,7 +307,7 @@
     </script>
 
     <script>
-        $.get('/operacional/get/pedidoqtdemodalidade?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+        $.get('/operacional/get/pedidoqtdetcarga?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatfiscal);
             data = JSON.parse(res).fatfiscal;
             var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
@@ -328,7 +329,7 @@
     </script>
 
     <script>
-        $.get('/operacional/get/pedidoqtdetipofrete?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
+        $.get('/operacional/get/pedidoqtdetfrete?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
             console.log(JSON.parse(res).fatfiscal);
             data = JSON.parse(res).fatfiscal;
             var ctx = document.getElementById('chart-doughnut-4').getContext('2d');
