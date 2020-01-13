@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (session ('token')){
-            return  redirect()->route('faturamento');
+            return  redirect()->route('dashboard');
         }
 
         return $next($request);

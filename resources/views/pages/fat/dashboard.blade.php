@@ -53,15 +53,116 @@
                     </div>
                 </div>
             </div>
+            <!-- Data atual -->
+            <script type="text/javascript">
+                moment.locale('pt-br');
+                var actualData, _actualData;
 
+                function mes_atual() {
+                    actualData = moment().startOf("Month").format('DD/MM/YYYY');
+                    _actualData = moment().endOf("Month").format('DD/MM/YYYY');
+                    load_api(actualData,_actualData);
+                    $("#mes_anterior").removeClass('active');
+                    $("#data_costum").removeClass('active');
+                    $("#mes_atual").addClass('active');
+                }
+
+                function mes_anterior() {
+                    actualData = moment().subtract(1, 'Month').startOf("Month").format('DD/MM/YYYY');
+                    _actualData = moment().subtract(1, 'Month').endOf("Month").format('DD/MM/YYYY');
+                    load_api(actualData,_actualData);
+                    $("#mes_atual").removeClass('active');
+                    $("#data_costum").removeClass('active');
+                    $("#mes_anterior").addClass('active');
+                }
+
+                function data_custom() {
+                    $("#mes_atual").removeClass('active');
+                    $("#mes_anterior").removeClass('active');
+                    $("#data_costum").addClass('active');
+                }
+
+               function load_api(startDate,lastDate) {
+                   faturamento(startDate,lastDate);
+                   gerencial(startDate,lastDate);
+                   gerencialcliente(startDate,lastDate);
+               }
+
+                function faturamento(datainicial,datafinal){
+                    console.log(datainicial);
+                    $.get("/faturamento/get/faturamento?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+                        console.log(JSON.parse(res).fatfiscal);
+                        data = JSON.parse(res).fatfiscal;
+                        var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: [data[0].LABEL, data[1].LABEL],
+                                datasets: [{
+                                    label: 'Gráfico de Dados',
+                                    data: [data[0].VALOR, data[1].VALOR],
+                                    backgroundColor: [
+                                        'rgba(50, 202, 50)',
+                                        'rgba(167, 159, 159, 1)',
+                                    ],
+                                }]
+                            },
+                        });
+                    });
+                }
+
+                function gerencialcliente(datainicial,datafinal){
+                    $.get("/faturamento/get/gerencialcliente?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                        console.log(JSON.parse(res).fatfiscal);
+                        data = JSON.parse(res).fatfiscal;
+                        var ctx = document.getElementById('chart-bar').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: [data[0].LABEL, data[1].LABEL],
+                                datasets: [{
+                                    label: 'Gráfico de Dados',
+                                    data: [data[0].VALOR, data[1].VALOR],
+                                    backgroundColor: [
+                                        'rgba(50, 202, 50)',
+                                        'rgba(167, 159, 159, 1)',
+                                    ],
+                                }]
+                            },
+                        });
+                    });
+                }
+
+                function gerencial(datainicial,datafinal){
+                    $.get("/faturamento/get/gerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                        console.log(JSON.parse(res).fatgerencial);
+                        data = JSON.parse(res).fatgerencial;
+                        var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: [data[0].LABEL, data[1].LABEL, data[2].LABEL],
+                                datasets: [{
+                                    label: 'Gráfico de Dados',
+                                    data: [data[0].VALOR, data[1].VALOR, data[2].VALOR],
+                                    backgroundColor: [
+                                        'rgba(50, 202, 50)',
+                                        'rgba(167, 159, 159, 1)',
+                                    ],
+                                }]
+                            },
+                        });
+                    });
+                }
+            </script>
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header" style="height: 15vh;">
                             <div class="m-auto">
-                                    <a href="javascript:void(0);" class="border-0 btn-pill btn-wide btn-transition active btn btn-outline-alternate">Mes Atual</a>
-                                    <a href="javascript:void(0);" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt">Mes Anterior</a>
-                                    <a href="javascript:void(0);" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" id="myBtn">Escolha Uma Data</a>
+                                    <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
+                                    <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
+                                    <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolha Uma Data</a>
                             </div>
                         </div>
                     </div>
@@ -260,238 +361,49 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    <div class="main-card mb-3 card">
-                        <div class="card-body">
-                            <h6 class="card-title">Ranking Clientes</h6>
-                            <div class="scroll-area-sm">
-                                <div class="scrollbar-container">
-                                    <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <div class="widget-content p-0">
-                                                <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr-3">
-                                                        <img width="42" class="rounded-circle" src="/imgs/avatars/9.jpg" alt="">
-                                                    </div>
-                                                    <div class="widget-content-left">
-                                                        <div class="widget-heading">Ella-Rose Henry</div>
-                                                        <div class="widget-subheading">Web Developer</div>
-                                                    </div>
-                                                    <div class="widget-content-right">
-                                                        <div class="font-size-xlg text-muted">
-                                                            <small class="opacity-5 pr-1">$</small>
-                                                            <span>129</span>
-                                                            <small class="text-danger pl-2">
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="widget-content p-0">
-                                                <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr-3">
-                                                        <img width="42" class="rounded-circle" src="/imgs/avatars/5.jpg" alt="">
-                                                    </div>
-                                                    <div class="widget-content-left">
-                                                        <div class="widget-heading">Ruben Tillman</div>
-                                                        <div class="widget-subheading">UI Designer</div>
-                                                    </div>
-                                                    <div class="widget-content-right">
-                                                        <div class="font-size-xlg text-muted">
-                                                            <small class="opacity-5 pr-1">$</small>
-                                                            <span>54</span>
-                                                            <small class="text-success pl-2">
-                                                                <i class="fa fa-angle-up"></i>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="widget-content p-0">
-                                                <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr-3">
-                                                        <img width="42" class="rounded-circle" src="/imgs/avatars/4.jpg" alt="">
-                                                    </div>
-                                                    <div class="widget-content-left">
-                                                        <div class="widget-heading">Vinnie Wagstaff</div>
-                                                        <div class="widget-subheading">Java Programmer</div>
-                                                    </div>
-                                                    <div class="widget-content-right">
-                                                        <div class="font-size-xlg text-muted">
-                                                            <small class="opacity-5 pr-1">$</small>
-                                                            <span>429</span>
-                                                            <small class="text-warning pl-2">
-                                                                <i class="fa fa-dot-circle"></i>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="widget-content p-0">
-                                                <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr-3">
-                                                        <img width="42" class="rounded-circle" src="/imgs/avatars/3.jpg" alt="">
-                                                    </div>
-                                                    <div class="widget-content-left">
-                                                        <div class="widget-heading">Ella-Rose Henry</div>
-                                                        <div class="widget-subheading">Web Developer</div>
-                                                    </div>
-                                                    <div class="widget-content-right">
-                                                        <div class="font-size-xlg text-muted">
-                                                            <small class="opacity-5 pr-1">$</small>
-                                                            <span>129</span>
-                                                            <small class="text-danger pl-2">
-                                                                <i class="fa fa-angle-down"></i>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="widget-content p-0">
-                                                <div class="widget-content-wrapper">
-                                                    <div class="widget-content-left mr-3">
-                                                        <img width="42" class="rounded-circle" src="/imgs/avatars/2.jpg" alt="">
-                                                    </div>
-                                                    <div class="widget-content-left">
-                                                        <div class="widget-heading">Ruben Tillman</div>
-                                                        <div class="widget-subheading">UI Designer</div>
-                                                    </div>
-                                                    <div class="widget-content-right">
-                                                        <div class="font-size-xlg text-muted">
-                                                            <small class="opacity-5 pr-1">$</small>
-                                                            <span>54</span>
-                                                            <small class="text-success pl-2">
-                                                                <i class="fa fa-angle-up"></i>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 
 <!--  -->
     <script>
-        $.get('/faturamento/get/faturamento?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
-            console.log(JSON.parse(res).fatfiscal);
-            data = JSON.parse(res).fatfiscal;
-            var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: [data[0].LABEL, data[1].LABEL],
-                    datasets: [{
-                        label: 'Gráfico de Dados',
-                        data: [data[0].VALOR, data[1].VALOR],
-                        backgroundColor: [
-                            'rgba(50, 202, 50)',
-                            'rgba(167, 159, 159, 1)',
-                        ],
-                    }]
-                },
-            });
-        });
-    </script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-    <script>
-        $.get('/faturamento/get/gerencial?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
-            console.log(JSON.parse(res).fatgerencial);
-            data = JSON.parse(res).fatgerencial;
-            var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: [data[0].LABEL, data[1].LABEL, data[2].LABEL],
-                    datasets: [{
-                        label: 'Gráfico de Dados',
-                        data: [data[0].VALOR, data[1].VALOR, data[2].VALOR],
-                        backgroundColor: [
-                            'rgba(50, 202, 50)',
-                            'rgba(167, 159, 159, 1)',
-                        ],
-                    }]
-                },
-            });
-        });
-    </script>
+        // Get the button that opens the modal
+        var btn = document.getElementById("data_costum");
 
-    <script>
-        $.get('/faturamento/get/gerencialcliente?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
-            console.log(JSON.parse(res).fatfiscal);
-            data = JSON.parse(res).fatfiscal;
-            var ctx = document.getElementById('chart-bar').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [data[0].LABEL, data[1].LABEL],
-                    datasets: [{
-                        label: 'Gráfico de Dados',
-                        data: [data[0].VALOR, data[1].VALOR],
-                        backgroundColor: [
-                            'rgba(50, 202, 50)',
-                            'rgba(167, 159, 159, 1)',
-                        ],
-                    }]
-                },
-            });
-        });
-    </script>
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        };
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
 
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-    modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-    modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-    }
+        mes_atual();
     </script>
 
     <!-- Script callendar -->
-    <!-- <script src="/js/moment.min.js"></script> -->
-    <!-- <script src="/js/bootstrap-datetimepicker.min.js"></script> -->
     <script type="text/javascript">
         $('.date').datepicker({
         format: 'dd-mm-yyyy'
         });
     </script>
+
+
+
 
 @endsection
 

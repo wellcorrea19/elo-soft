@@ -15,6 +15,8 @@ try {
 
     global.iziToast = require('izitoast');
 
+    global.Chart = require('chart.js');
+
     require('jquery-ui');
 
     require('bootstrap');

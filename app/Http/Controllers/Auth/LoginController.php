@@ -81,7 +81,7 @@ class LoginController extends Controller
     public function token($email = '',$password = ''){
         $auth = ['email' => $email, 'password' => $password];
         $client = new Client();
-        $client->setDefaultOption('verify', env('SSL'));
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
         $res = $client->post(env('API_URL').'/sessions', Array('json' => $auth) );
         $token = json_decode($res->getBody())->token;
         session(['token' => $token]);

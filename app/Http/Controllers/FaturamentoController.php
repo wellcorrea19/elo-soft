@@ -8,6 +8,16 @@ use function Psy\debug;
 
 class FaturamentoController extends Controller
 {
+    /**
+     * @var \Illuminate\Session\SessionManager|\Illuminate\Session\Store
+     */
+    protected $token;
+
+    public function __construct()
+    {
+        $this->token = session('token');
+    }
+
     public function index(){
         return view('pages.fat.dashboard');
     }
@@ -18,9 +28,10 @@ class FaturamentoController extends Controller
         $datainicial = $request->input('datainicial');
         $datafinal =  $request->input('datafinal');
         $client = new Client(['base_url' =>  env('API_URL')]);
-        $client->setDefaultOption('verify', env('SSL'));
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
         $res = $client->get(
-            env('API_URL').'/getFaturamento?datainicial='.$datainicial.'&datafinal='.$datafinal
+            '/getFaturamento?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            Array('headers' => $headers)
         );
         return response($res->getBody());
     }
@@ -31,7 +42,7 @@ class FaturamentoController extends Controller
         $datainicial = $request->input('datainicial');
         $datafinal =  $request->input('datafinal');
         $client = new Client(['base_url' =>  env('API_URL')]);
-        $client->setDefaultOption('verify', env('SSL'));
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
         $res = $client->get(
             '/getFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal ,
             Array('headers' => $headers)
@@ -45,7 +56,7 @@ class FaturamentoController extends Controller
         $datainicial = $request->input('datainicial');
         $datafinal =  $request->input('datafinal');
         $client = new Client(['base_url' =>  env('API_URL')]);
-        $client->setDefaultOption('verify', env('SSL'));
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
         $res = $client->get(
             '/getFatGerencialCliente?datainicial='.$datainicial.'&datafinal='.$datafinal ,
             Array('headers' => $headers)

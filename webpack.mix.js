@@ -16,7 +16,8 @@ mix
     .autoload({
         jquery: ['$', 'window.jQuery', 'jQuery'],
         popper: ['Popper'],
-        iziToast: ['izitoast', 'iziToast']
+        iziToast: ['izitoast', 'iziToast'],
+        chart: ['Chart', 'chart']
     })
     .options({
         processCssUrls: false,
@@ -24,7 +25,7 @@ mix
     })
     .copy('resources/Icon-font-7', 'public/Icon-font-7')
     // .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/fonts')
-    .copy('resources/js/main.js', 'public/js/main.js')
+    // .copy('resources/js/main.js', 'public/js/main.js')
     .sass('resources/sass/app.scss', 'public/css/styles.css')
     .minify(['public/css/app.css','public/js/main.js','public/js/vendor.js','public/js/manifest.js'])
     .version();
