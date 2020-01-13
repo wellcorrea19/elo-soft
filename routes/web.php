@@ -63,7 +63,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('resultlucliq')->group(function () {
             Route::get('/', 'OperacionalController@resultlucliq')->name('resultlucliq');
 
-
         });
     });
 
