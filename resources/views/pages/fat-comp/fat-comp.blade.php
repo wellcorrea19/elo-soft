@@ -10,7 +10,7 @@
                             <i class="pe-7s-graph icon-gradient bg-mean-fruit">
                             </i>
                         </div>
-                        <div>Resultado Lucro Bruto</div>
+                        <div>Resultado Faturamento Comparativo </div>
                     </div>
                     <div class="page-title-actions">
                         <div class="app-header-left">
