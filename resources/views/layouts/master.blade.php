@@ -128,7 +128,13 @@
                     <li>
                         <a href="{{route('faturamento')}}" @if (Route::is('faturamento')) class="mm-active"  @endif>
                             <i class="metismenu-icon pe-7s-graph"></i>
-                            Faturamentos
+                            Faturamento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="metismenu-icon pe-7s-graph1"></i>
+                            Faturamento Comparativo
                         </a>
                     </li>
                     <li>

@@ -25,34 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-xl-6">
-                    <div class="card mb-3 widget-content bg-midnight-bloom">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Total Receitas</div>
-                                <div class="widget-subheading">Last year expenses</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white"><span>1896</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-6">
-                    <div class="card mb-3 widget-content bg-arielle-smile">
-                        <div class="widget-content-wrapper text-white">
-                            <div class="widget-content-left">
-                                <div class="widget-heading">Clientes</div>
-                                <div class="widget-subheading">Lucro Total Clientes</div>
-                            </div>
-                            <div class="widget-content-right">
-                                <div class="widget-numbers text-white"><span>$ 568</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!-- Data atual -->
 
             <div class="row">
@@ -306,7 +279,7 @@
 
         function faturamento(datainicial,datafinal){
             console.log(datainicial);
-            $.get("/faturamento/get/faturamento?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+            $.get("/faturamento/get/fiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
                 console.log(JSON.parse(res).fatfiscal);
                 data = JSON.parse(res).fatfiscal;
                 var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
