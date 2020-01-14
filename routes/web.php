@@ -38,9 +38,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'FatComparativoController@index')->name('fat-comp');
 
         Route::prefix('get')->group(function () {
-            Route::get('compfatfiscal', 'FaturamentoController@getCompFatFiscal')->name('getCompFatFiscal');
+            Route::get('compfatfiscal', 'FatComparativoController@getCompFatFiscal')->name('getCompFatFiscal');
 
-            Route::get('compfatgerencial', 'FaturamentoController@getCompFatGerencial')->name('getCompFatGerencial');
+            Route::get('compfatgerencial', 'FatComparativoController@getCompFatGerencial')->name('getCompFatGerencial');
 
         });
     });

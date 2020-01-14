@@ -112,7 +112,7 @@
 
         function compfiscal(datainicial,datafinal){
             console.log(datainicial);
-            $.get("/operacional/get/compfatfiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+            $.get("/fat-comp/get/compfatfiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
                 console.log(JSON.parse(res).pedido_lucrobruto);
                 data = JSON.parse(res).pedido_lucrobruto;
                 var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
@@ -134,7 +134,7 @@
         }
 
         function compgerencial(datainicial,datafinal){
-            $.get("/operacional/get/compfatgerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+            $.get("/fat-comp/get/compfatgerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
                 console.log(JSON.parse(res).pedido_qtde_tipofrete);
                 data = JSON.parse(res).pedido_qtde_tipofrete;
                 var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
