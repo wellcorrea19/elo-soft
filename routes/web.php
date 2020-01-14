@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth']], function () {
 
             Route::get('pedidoqtdetcarga', 'OperacionalController@getPedidoQtdeTCarga')->name('getPedidoQtdeTCarga');
 
+            Route::get('pedidoqtderota', 'OperacionalController@getPedidoQtdeRota')->name('getPedidoQtdeRota');
+
             Route::get('pedidolucrobrutipocarga', 'OperacionalController@getPedidoLucroBruTipoCarga')->name('getfatfiscal');
 
             Route::get('pedidolucroliqtipocarga', 'OperacionalController@getPedidoLucroLiqTipoCarga')->name('getfatgerencial');

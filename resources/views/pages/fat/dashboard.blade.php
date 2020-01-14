@@ -26,38 +26,21 @@
                 </div>
             </div>
             
-            <!-- Data atual -->
-
+            <!-- Selecionar datas -->
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header" style="height: 15vh;">
                             <div class="m-auto">
-                                    <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
-                                    <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
-                                    <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolha Uma Data</a>
+                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
+                                <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
+                                <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolha Uma Data</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <!-- <span class="close">&times;</span> -->
-                    <br>
-                    <input class="date form-control" style="display: none" name="dates" type="text" placeholder="Data Inicial">
-                    <a id="my-input">
-                        <i class="fa fa-calendar"></i>
-                    </a>
-
-                    <br>
-                    <input class="date form-control" type="text" placeholder="Data Final">
-                    <a href="javascript:void(0);" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" style="margin: 15px auto 0 !important; width: 50%;">Aplicar</a>
-                </div>
-            </div>
+            <!--  -->
 
             <div class="row">
                 <div class="col-md-12 col-lg-6">
@@ -85,18 +68,7 @@
                         <div class="card-body">
                             <canvas id="chart-doughnut-2"></canvas>
                         </div>
-                    </div>
-                    <!-- <div class="mb-3 card">
-                        <div class="card-header-tab card-header">
-                            <div class="card-header-title m-auto">
-                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Faturamento Por Carga
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-doughnut"></canvas>
-                        </div>
-                    </div> -->
+                    </div>>
                 </div>
 
                 <div class="col-md-12 col-lg-12">
@@ -130,9 +102,6 @@
                                                                 <div class="font-size-xlg text-muted">
                                                                     <small class="opacity-5 pr-1">$</small>
                                                                     <span>129</span>
-                                                                    <small class="text-danger pl-2">
-                                                                        <i class="fa fa-angle-down"></i>
-                                                                    </small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -151,9 +120,6 @@
                                                                 <div class="font-size-xlg text-muted">
                                                                     <small class="opacity-5 pr-1">$</small>
                                                                     <span>54</span>
-                                                                    <small class="text-success pl-2">
-                                                                        <i class="fa fa-angle-up"></i>
-                                                                    </small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -172,9 +138,6 @@
                                                                 <div class="font-size-xlg text-muted">
                                                                     <small class="opacity-5 pr-1">$</small>
                                                                     <span>429</span>
-                                                                    <small class="text-warning pl-2">
-                                                                        <i class="fa fa-dot-circle"></i>
-                                                                    </small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -193,9 +156,6 @@
                                                                 <div class="font-size-xlg text-muted">
                                                                     <small class="opacity-5 pr-1">$</small>
                                                                     <span>129</span>
-                                                                    <small class="text-danger pl-2">
-                                                                        <i class="fa fa-angle-down"></i>
-                                                                    </small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -214,9 +174,6 @@
                                                                 <div class="font-size-xlg text-muted">
                                                                     <small class="opacity-5 pr-1">$</small>
                                                                     <span>54</span>
-                                                                    <small class="text-success pl-2">
-                                                                        <i class="fa fa-angle-up"></i>
-                                                                    </small>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -345,7 +302,7 @@
         }
     </script>
 
-    <!-- Script -->
+    <!-- Script calendario -->
     <script type="text/javascript">
         mes_anterior();
 

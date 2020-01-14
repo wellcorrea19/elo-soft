@@ -25,61 +25,22 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row"> -->
-            <!-- <div class="col-md-6 col-xl-6">
-                <div class="card mb-3 widget-content bg-midnight-bloom">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Total Receitas</div>
-                            <div class="widget-subheading">Last year expenses</div>
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span>1896</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="col-md-6 col-xl-6">
-                <div class="card mb-3 widget-content bg-arielle-smile">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Clientes</div>
-                            <div class="widget-subheading">Lucro Total Clientes</div>
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-white"><span>$ 568</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- </div> -->
 
+            <!-- Selecionar datas -->
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header" style="height: 15vh;">
                             <div class="m-auto">
-                                <a href="javascript:void(0);" class="border-0 btn-pill btn-wide btn-transition active btn btn-outline-alternate">Mes Atual</a>
-                                <a href="javascript:void(0);" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt">Mes Anterior</a>
-                                <a href="javascript:void(0);" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" id="myBtn">Escolha Uma Data</a>
+                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
+                                <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
+                                <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolha Uma Data</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <!-- <span class="close">&times;</span> -->
-                    <br>
-                    <input class="date form-control" type="text" placeholder="Data Inicial">
-                    <br>
-                    <input class="date form-control" type="text" placeholder="Data Final">
-                    <a href="javascript:void(0);" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" style="margin: 15px auto 0 !important; width: 50%;">Aplicar</a>
-                </div>
-            </div>
+            <!--  -->
 
             <div class="row">
                 <div class="col-md-12 col-lg-6">
@@ -87,7 +48,7 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Operacional Por Tipo de Carga
+                                Relatório Operacional Por Modalidade
                             </div>
                         </div>
                         <div class="card-body">
@@ -112,7 +73,7 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Operacional Por Rota
+                                Relatório Operacional Por Tipo De Carga
                             </div>
                         </div>
                         <div class="card-body">
@@ -123,7 +84,7 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Operacional Por Modalidade
+                                Relatório Operacional Por Rotas
                             </div>
                         </div>
                         <div class="card-body">
@@ -135,129 +96,174 @@
         </div>
     </div>
 
-    <!--  -->
-    <script>
-        $.get('/operacional/get/pedidoqtdemodalidade?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
-            console.log(JSON.parse(res).fatfiscal);
-            data = JSON.parse(res).fatfiscal;
-            var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: [data[0].LABEL, data[1].LABEL],
-                    datasets: [{
-                        label: 'Gráfico de Dados',
-                        data: [data[0].VALOR, data[1].VALOR],
-                        backgroundColor: [
-                            'rgba(50, 202, 50)',
-                            'rgba(167, 159, 159, 1)',
-                        ],
-                    }]
-                },
-            });
-        });
-    </script>
-
-    <script>
-        $.get('/operacional/get/pedidoqtdetfrete?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
-            console.log(JSON.parse(res).fatgerencial);
-            data = JSON.parse(res).fatgerencial;
-            var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: [data[0].LABEL, data[1].LABEL, data[2].LABEL],
-                    datasets: [{
-                        label: 'Gráfico de Dados',
-                        data: [data[0].VALOR, data[1].VALOR, data[2].VALOR],
-                        backgroundColor: [
-                            'rgba(50, 202, 50)',
-                            'rgba(167, 159, 159, 1)',
-                        ],
-                    }]
-                },
-            });
-        });
-    </script>
-
-    <script>
-        $.get('/operacional/get/pedidoqtdetcarga?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
-            console.log(JSON.parse(res).fatfiscal);
-            data = JSON.parse(res).fatfiscal;
-            var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [data[0].LABEL, data[1].LABEL],
-                    datasets: [{
-                        label: 'Gráfico de Dados',
-                        data: [data[0].VALOR, data[1].VALOR],
-                        backgroundColor: [
-                            'rgba(50, 202, 50)',
-                            'rgba(167, 159, 159, 1)',
-                        ],
-                    }]
-                },
-            });
-        });
-    </script>
-
-    <script>
-        $.get('/operacional/get/pedidoqtdetfrete?datainicial=20/11/2019&datafinal=20/12/2019', function (res) {
-            console.log(JSON.parse(res).fatfiscal);
-            data = JSON.parse(res).fatfiscal;
-            var ctx = document.getElementById('chart-doughnut-4').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [data[0].LABEL, data[1].LABEL],
-                    datasets: [{
-                        label: 'Gráfico de Dados',
-                        data: [data[0].VALOR, data[1].VALOR],
-                        backgroundColor: [
-                            'rgba(50, 202, 50)',
-                            'rgba(167, 159, 159, 1)',
-                        ],
-                    }]
-                },
-            });
-        });
-    </script>
-
-    <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
-
-    <!-- Script callendar -->
-    <!-- <script src="/js/moment.min.js"></script> -->
-    <!-- <script src="/js/bootstrap-datetimepicker.min.js"></script> -->
+    <!-- Gráficos -->
     <script type="text/javascript">
-        $('.date').datepicker({
-            format: 'dd-mm-yyyy'
+        moment.locale('pt-br');
+        var actualData, _actualData;
+
+        function mes_atual() {
+            actualData = moment().startOf("Month").format('DD/MM/YYYY');
+            _actualData = moment().format('DD/MM/YYYY');
+            load_api(actualData,_actualData);
+            $("#mes_anterior").removeClass('active');
+            $("#data_costum").removeClass('active');
+            $("#mes_atual").addClass('active');
+        }
+
+        function mes_anterior() {
+            actualData = moment().subtract(1, 'Month').startOf("Month").format('DD/MM/YYYY');
+            _actualData = moment().subtract(1, 'Month').endOf("Month").format('DD/MM/YYYY');
+            load_api(actualData,_actualData);
+            $("#mes_atual").removeClass('active');
+            $("#data_costum").removeClass('active');
+            $("#mes_anterior").addClass('active');
+        }
+
+        function data_custom(startDate,lastDate) {
+            $("#mes_atual").removeClass('active');
+            $("#mes_anterior").removeClass('active');
+            $("#data_costum").addClass('active');
+            load_api(startDate,lastDate);
+        }
+
+        function load_api(startDate,lastDate) {
+            modalidade(startDate,lastDate);
+            qtdefrete(startDate,lastDate);
+            qtdecarga(startDate,lastDate);
+            qtderota(startDate,lastDate);
+        }
+
+        function modalidade(datainicial,datafinal){
+            console.log(datainicial);
+            $.get("/operacional/get/pedidoqtdemodalidade?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+                console.log(JSON.parse(res).pedido_qtde_modalidade);
+                data = JSON.parse(res).pedido_qtde_modalidade;
+                var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [data[0].LABEL, data[1].LABEL],
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: [data[0].VALOR, data[1].VALOR],
+                            backgroundColor: [
+                                'rgba(50, 202, 50)',
+                                'rgba(167, 159, 159, 1)',
+                            ],
+                        }]
+                    },
+                });
+            });
+        }
+
+        function qtdefrete(datainicial,datafinal){
+            $.get("/operacional/get/pedidoqtdetfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                console.log(JSON.parse(res).pedido_qtde_tipofrete);
+                data = JSON.parse(res).pedido_qtde_tipofrete;
+                var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [data[0].LABEL, data[1].LABEL],
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: [data[0].VALOR, data[1].VALOR],
+                            backgroundColor: [
+                                'rgba(50, 202, 50)',
+                                'rgba(167, 159, 159, 1)',
+                            ],
+                        }]
+                    },
+                });
+            });
+        }
+
+        function qtdecarga(datainicial,datafinal){
+            $.get("/operacional/get/pedidoqtdetcarga?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                console.log(JSON.parse(res).pedido_qtde_tipocarga);
+                data = JSON.parse(res).pedido_qtde_tipocarga;
+                var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [data[0].LABEL, data[1].LABEL],
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: [data[0].VALOR, data[1].VALOR],
+                            backgroundColor: [
+                                'rgba(50, 202, 50)',
+                                'rgba(167, 159, 159, 1)',
+                            ],
+                        }]
+                    },
+                });
+            });
+        }
+
+        function qtderota(datainicial,datafinal){
+            $.get("/operacional/get/pedidoqtderota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                console.log(JSON.parse(res).pedido_qtde_rota);
+                data = JSON.parse(res).pedido_qtde_rota;
+                var ctx = document.getElementById('chart-doughnut-4').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [data[0].LABEL, data[1].LABEL],
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: [data[0].VALOR, data[1].VALOR],
+                            backgroundColor: [
+                                'rgba(50, 202, 50)',
+                                'rgba(167, 159, 159, 1)',
+                            ],
+                        }]
+                    },
+                });
+            });
+        }
+
+    </script>
+
+    <!-- Script calendario -->
+    <script type="text/javascript">
+        mes_anterior();
+
+        $(function() {
+            $('#data_costum').daterangepicker(
+                {
+                    "locale": {
+                        "format": "DD/MM/YYYY",
+                        "separator": " - ",
+                        "applyLabel": "Aplicar",
+                        "cancelLabel": "Cancelar",
+                        "daysOfWeek": [
+                            "Dom",
+                            "Seg",
+                            "Ter",
+                            "Qua",
+                            "Qui",
+                            "Sex",
+                            "Sab"
+                        ],
+                        "monthNames": [
+                            "Janeiro",
+                            "Fevereiro",
+                            "Março",
+                            "Abril",
+                            "Maio",
+                            "Junho",
+                            "Julho",
+                            "Agosto",
+                            "Setembro",
+                            "Outubro",
+                            "Novembro",
+                            "Dezembro"
+                        ],
+                        "firstDay": 1
+                    }
+                } , function(start, end, label) {
+                data_custom(start.format('DD/MM/YYYY'),end.format('DD/MM/YYYY'));
+            });
         });
     </script>
 

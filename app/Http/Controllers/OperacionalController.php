@@ -67,6 +67,20 @@ class OperacionalController extends Controller
         return response($res->getBody());
     }
 
+    public function getPedidoQtdeRota(Request $request){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $datainicial = $request->input('datainicial');
+        $datafinal =  $request->input('datafinal');
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
+        $res = $client->get(
+            '/getPedidoQtdeRota?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            Array('headers' => $headers)
+        );
+        return response($res->getBody());
+    }
+
     public function getPedidoLucroLiqTipoCarga(Request $request){
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
