@@ -48,7 +48,7 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Comparativo Relatório Fiscal
+                                Relatório Comparativo Fiscal
                             </div>
                         </div>
                         <div class="card-body">
@@ -62,7 +62,7 @@
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Comparativo Relatório Gerencial
+                                Relatório Comparativo Gerencial
                             </div>
                         </div>
                         <div class="card-body">

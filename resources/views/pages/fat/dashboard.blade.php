@@ -68,7 +68,7 @@
                         <div class="card-body">
                             <canvas id="chart-doughnut-2"></canvas>
                         </div>
-                    </div>>
+                    </div>
                 </div>
 
                 <div class="col-md-12 col-lg-12">
