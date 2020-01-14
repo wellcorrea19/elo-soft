@@ -27,11 +27,21 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('get')->group(function () {
             Route::get('fiscal', 'FaturamentoController@getFatFiscal')->name('getfatfiscal');
 
-            Route::get('faturamento', 'FaturamentoController@getfaturamento')->name('getfaturamento');
-
             Route::get('gerencial', 'FaturamentoController@getFatGerencial')->name('getfatgerencial');
 
             Route::get('gerencialcliente', 'FaturamentoController@getFatGerencialCliente')->name('getFatGerencialCliente');
+        });
+    });
+
+    Route::prefix('fat-comp')->group(function () {
+
+        Route::get('/', 'FatComparativoController@index')->name('fat-comp');
+
+        Route::prefix('get')->group(function () {
+            Route::get('compfatfiscal', 'FaturamentoController@getCompFatFiscal')->name('getCompFatFiscal');
+
+            Route::get('compfatgerencial', 'FaturamentoController@getCompFatGerencial')->name('getCompFatGerencial');
+
         });
     });
 
@@ -45,9 +55,15 @@ Route::group(['middleware' => ['auth']], function () {
 
             Route::get('pedidoqtderota', 'OperacionalController@getPedidoQtdeRota')->name('getPedidoQtdeRota');
 
-            Route::get('pedidolucrobrutipocarga', 'OperacionalController@getPedidoLucroBruTipoCarga')->name('getfatfiscal');
+            Route::get('pedidolucrobrutcarga', 'OperacionalController@getPedidoLucroBruTCarga')->name('getPedidoLucroBruTCarga');
 
-            Route::get('pedidolucroliqtipocarga', 'OperacionalController@getPedidoLucroLiqTipoCarga')->name('getfatgerencial');
+            Route::get('pedidolucrobrutfrete', 'OperacionalController@getPedidoLucroBruTFrete')->name('getPedidoLucroBruTFrete');
+
+            Route::get('pedidolucroliqtcarga', 'OperacionalController@getPedidoLucroLiqTCarga')->name('getPedidoLucroLiqTCarga');
+
+            Route::get('pedidolucroliqtfrete', 'OperacionalController@getPedidoLucroLiqTFrete')->name('getPedidoLucroLiqTFrete');
+
+            Route::get('pedidolucroliqrota', 'OperacionalController@getPedidoLucroLiqRota')->name('getPedidoLucroLiqRota');
         });
 
         Route::prefix('resultquant')->group(function () {

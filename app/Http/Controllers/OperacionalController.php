@@ -23,6 +23,7 @@ class OperacionalController extends Controller
         return view('pages.op.res-lucliq');
     }
 
+    //Inicio gráficos Quantidades 
     public function getPedidoQtdeModalidade(Request $request){
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
@@ -36,7 +37,6 @@ class OperacionalController extends Controller
         );
         return response($res->getBody());
     }
-    //
 
     public function getPedidoQtdeTFrete(Request $request){
         $token =  session('token');
@@ -51,7 +51,6 @@ class OperacionalController extends Controller
         );
         return response($res->getBody());
     }
-    //
 
     public function getPedidoQtdeTCarga(Request $request){
         $token =  session('token');
@@ -80,8 +79,40 @@ class OperacionalController extends Controller
         );
         return response($res->getBody());
     }
+    // Fim gráficos quantidade
 
-    public function getPedidoLucroLiqTipoCarga(Request $request){
+    // Inicio lucro bruto
+    public function getPedidoLucroBruTCarga(Request $request){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $datainicial = $request->input('datainicial');
+        $datafinal =  $request->input('datafinal');
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', base_path() .  env('SSL'));
+        $res = $client->get(
+            '/getPedidoLucroBruTCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            Array('headers' => $headers)
+        );
+        return response($res->getBody());
+    }
+
+    public function getPedidoLucroBruTFrete(Request $request){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $datainicial = $request->input('datainicial');
+        $datafinal =  $request->input('datafinal');
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', base_path() .  env('SSL'));
+        $res = $client->get(
+            '/getPedidoLucroBruTFrete?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            Array('headers' => $headers)
+        );
+        return response($res->getBody());
+    }
+    // Fim lucro bruto
+
+    // Inicio lucro liquido
+    public function getPedidoLucroLiqTCarga(Request $request){
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
         $datainicial = $request->input('datainicial');
@@ -95,19 +126,33 @@ class OperacionalController extends Controller
         return response($res->getBody());
     }
 
-
-    public function getPedidoLucroBruTipoCarga(Request $request){
+    public function getPedidoLucroLiqTFrete(Request $request){
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
         $datainicial = $request->input('datainicial');
         $datafinal =  $request->input('datafinal');
         $client = new Client(['base_url' =>  env('API_URL')]);
-        $client->setDefaultOption('verify', base_path() .  env('SSL'));
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
         $res = $client->get(
-            '/getPedidoLucroBruTCarga?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            '/getPedidoLucroLiqTFrete?datainicial='.$datainicial.'&datafinal='.$datafinal ,
             Array('headers' => $headers)
         );
         return response($res->getBody());
     }
+
+    public function getPedidoLucroLiqRota(Request $request){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $datainicial = $request->input('datainicial');
+        $datafinal =  $request->input('datafinal');
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
+        $res = $client->get(
+            '/getPedidoLucroLiqRota?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            Array('headers' => $headers)
+        );
+        return response($res->getBody());
+    }
+    // Fim lucro liquido
 
 }

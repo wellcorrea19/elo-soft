@@ -132,7 +132,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{{route('fat-comp')}}" @if (Route::is('fat-comp')) class="mm-active"  @endif>
                             <i class="metismenu-icon pe-7s-graph1"></i>
                             Faturamento Comparativo
                         </a>
