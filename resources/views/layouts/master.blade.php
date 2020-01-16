@@ -20,14 +20,17 @@
     <!-- css -->
     <link type="text/css" rel="stylesheet" href="{{ asset('css/app.min.css') }}">
     <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
     <!-- /css -->
     <!-- js -->
     <script src="{{ asset('js/manifest.min.js') }}"></script>
     <script src="{{ asset('js/vendor.min.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{ asset('/js/main.js') }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <!-- /js -->
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
@@ -164,11 +167,17 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="app-sidebar__heading">ConfiguraÃ§Ãµes</li>
+                    <li>
+                        <a href="{{route('user')}}" @if (Route::is('user')) class="mm-active"  @endif>
+                            <i class="metismenu-icon pe-7s-add-user"></i>
+                            Cadastros
+                        </a>
+                    </li>
+                    <li class="app-sidebar__heading">Configurações</li>
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                             <i class="metismenu-icon pe-7s-power"></i>
                             {{ __('Logout') }}
                         </a>

@@ -84,6 +84,13 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 
+    Route::prefix('user')->group(function () {
+
+        Route::get('/', 'UserController@index')->name('user');
+    });
+
+
+
 });
 
 //Route::get('/login', 'Auth\Rest\LoginController@index')->name('login');

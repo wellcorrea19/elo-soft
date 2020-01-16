@@ -25,12 +25,11 @@ class FatComparativoController extends Controller
     public function getCompFatFiscal(Request $request){
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
-        $datainicial = $request->input('datainicial');
-        $datafinal =  $request->input('datafinal');
+        $ano = $request->input('ano');
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', base_path() . env('SSL'));
         $res = $client->get(
-            '/getCompFatFiscal?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            '/getCompFatFiscal?ano='.$ano,
             Array('headers' => $headers)
         );
         return response($res->getBody());
@@ -39,12 +38,11 @@ class FatComparativoController extends Controller
     public function getCompFatGerencial(Request $request){
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
-        $datainicial = $request->input('datainicial');
-        $datafinal =  $request->input('datafinal');
+        $ano = $request->input('ano');
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', base_path() . env('SSL'));
         $res = $client->get(
-            '/getCompFatGerencial?datainicial='.$datainicial.'&datafinal='.$datafinal ,
+            '/getCompFatGerencial?ano='.$ano,
             Array('headers' => $headers)
         );
         return response($res->getBody());

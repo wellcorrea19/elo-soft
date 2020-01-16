@@ -146,8 +146,8 @@
 
         function liqtfrete(datainicial,datafinal){
             $.get("/operacional/get/pedidolucroliqtfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_qtde_tipofrete);
-                data = JSON.parse(res).pedido_qtde_tipofrete;
+                console.log(JSON.parse(res).pedido_lucroliq_tfrete);
+                data = JSON.parse(res).pedido_lucroliq_tfrete;
                 var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
@@ -168,8 +168,8 @@
 
         function liqrota(datainicial,datafinal){
             $.get("/operacional/get/pedidolucroliqrota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_qtde_tipocarga);
-                data = JSON.parse(res).pedido_qtde_tipocarga;
+                console.log(JSON.parse(res).pedido_lucroliq_rota);
+                data = JSON.parse(res).pedido_lucroliq_rota;
                 var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',

@@ -32,9 +32,9 @@
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header" style="height: 15vh;">
                             <div class="m-auto">
-                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
-                                <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
-                                <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolha Uma Data</a>
+                                <a href="#" id="ano_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="ano_atual();">Ano Atual</a>
+                                <a href="#" id="ano_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="ano_anterior();">Ano Anterior</a>
+                                <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolher Ano</a>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
             <!--  -->
 
             <div class="row">
-                <div class="col-md-12 col-lg-6">
+                <div class="col-md-12 col-lg-12">
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
@@ -52,12 +52,12 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <canvas id="chart-doughnut-1"></canvas>
+                            <canvas id="chart-bar-1"></canvas>
                         </div>
                     </div>
                     
                 </div>
-                <div class="col-md-12 col-lg-6">
+                <div class="col-md-12 col-lg-12">
                      <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <canvas id="chart-doughnut-2"></canvas>
+                            <canvas id="chart-bar-2"></canvas>
                         </div>
                     </div>
                 </div>
@@ -80,27 +80,27 @@
         moment.locale('pt-br');
         var actualData, _actualData;
 
-        function mes_atual() {
-            actualData = moment().startOf("Month").format('DD/MM/YYYY');
-            _actualData = moment().format('DD/MM/YYYY');
+        function ano_atual() {
+            actualData = moment().startOf("Year").format('YYYY');
+            _actualData = moment().format('YYYY');
             load_api(actualData,_actualData);
-            $("#mes_anterior").removeClass('active');
+            $("#ano_anterior").removeClass('active');
             $("#data_costum").removeClass('active');
-            $("#mes_atual").addClass('active');
+            $("#ano_atual").addClass('active');
         }
 
-        function mes_anterior() {
-            actualData = moment().subtract(1, 'Month').startOf("Month").format('DD/MM/YYYY');
-            _actualData = moment().subtract(1, 'Month').endOf("Month").format('DD/MM/YYYY');
+        function ano_anterior() {
+            actualData = moment().subtract(1, 'Year').startOf("Year").format('YYYY');
+            _actualData = moment().subtract(1, 'Year').endOf("Year").format('YYYY');
             load_api(actualData,_actualData);
-            $("#mes_atual").removeClass('active');
+            $("#ano_atual").removeClass('active');
             $("#data_costum").removeClass('active');
-            $("#mes_anterior").addClass('active');
+            $("#ano_anterior").addClass('active');
         }
 
         function data_custom(startDate,lastDate) {
-            $("#mes_atual").removeClass('active');
-            $("#mes_anterior").removeClass('active');
+            $("#ano_atual").removeClass('active');
+            $("#ano_anterior").removeClass('active');
             $("#data_costum").addClass('active');
             load_api(startDate,lastDate);
         }
@@ -110,14 +110,14 @@
             compgerencial(startDate,lastDate);
         }
 
-        function compfiscal(datainicial,datafinal){
-            console.log(datainicial);
-            $.get("/fat-comp/get/compfatfiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                console.log(JSON.parse(res).pedido_lucrobruto);
-                data = JSON.parse(res).pedido_lucrobruto;
-                var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+        function compfiscal(ano){
+            console.log(ano);
+            $.get("/fat-comp/get/compfatfiscal?ano="+ano, function (res) {
+                console.log(JSON.parse(res).comp_fatfiscal);
+                data = JSON.parse(res).comp_fatfiscal;
+                var ctx = document.getElementById('chart-bar-1').getContext('2d');
                 var myChart = new Chart(ctx, {
-                    type: 'doughnut',
+                    type: 'bar',
                     data: {
                         labels: [data[0].LABEL, data[1].LABEL],
                         datasets: [{
@@ -133,13 +133,13 @@
             });
         }
 
-        function compgerencial(datainicial,datafinal){
-            $.get("/fat-comp/get/compfatgerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_qtde_tipofrete);
-                data = JSON.parse(res).pedido_qtde_tipofrete;
-                var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+        function compgerencial(ano){
+            $.get("/fat-comp/get/compfatgerencial?ano="+ano, function (res) {
+                console.log(JSON.parse(res).comp_fatgerencial);
+                data = JSON.parse(res).comp_fatgerencial;
+                var ctx = document.getElementById('chart-bar-2').getContext('2d');
                 var myChart = new Chart(ctx, {
-                    type: 'doughnut',
+                    type: 'bar',
                     data: {
                         labels: [data[0].LABEL, data[1].LABEL],
                         datasets: [{
@@ -159,13 +159,13 @@
 
     <!-- Script calendario -->
     <script type="text/javascript">
-        mes_anterior();
+        ano_anterior();
 
         $(function() {
             $('#data_costum').daterangepicker(
                 {
                     "locale": {
-                        "format": "DD/MM/YYYY",
+                        "format": "YYYY",
                         "separator": " - ",
                         "applyLabel": "Aplicar",
                         "cancelLabel": "Cancelar",
