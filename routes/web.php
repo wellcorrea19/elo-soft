@@ -85,8 +85,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::prefix('user')->group(function () {
-
         Route::get('/', 'UserController@index')->name('user');
+        Route::prefix('post')->group(function () {
+            Route::post('/user', 'UserController@storeUser')->name('storeUser');
+        });
     });
 
 
