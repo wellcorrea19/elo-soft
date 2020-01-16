@@ -34,7 +34,7 @@
                         <div class="card-body table-responsive" >
                             <ul class="vertical-nav-menu" id="css-table">
                                 <li style="border-bottom: 0.1px solid rgb(218, 218, 218)">
-                                    <a href="#">
+                                    <a href="#" style="padding: 0 1.5rem 0 25px;">
                                         MM Softwares
                                         
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
