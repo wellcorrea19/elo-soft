@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Selecionar datas -->
             <div class="row">
                 <div class="col-md-12 col-lg-12">
@@ -237,16 +237,22 @@
         function faturamento(datainicial,datafinal){
             console.log(datainicial);
             $.get("/faturamento/get/fiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                console.log(JSON.parse(res).fatfiscal);
-                data = JSON.parse(res).fatfiscal;
+                let data = JSON.parse(res).fatfiscal;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
+
                 var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -259,16 +265,21 @@
 
         function gerencialcliente(datainicial,datafinal){
             $.get("/faturamento/get/gerencialcliente?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).fatgerencial_cliente);
                 data = JSON.parse(res).fatgerencial_cliente;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-bar').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -281,16 +292,21 @@
 
         function gerencial(datainicial,datafinal){
             $.get("/faturamento/get/gerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).fatgerencial);
                 data = JSON.parse(res).fatgerencial;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL, data[2].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR, data[2].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',

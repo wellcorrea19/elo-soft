@@ -136,16 +136,21 @@
         function modalidade(datainicial,datafinal){
             console.log(datainicial);
             $.get("/operacional/get/pedidoqtdemodalidade?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                console.log(JSON.parse(res).pedido_qtde_modalidade);
                 data = JSON.parse(res).pedido_qtde_modalidade;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -158,16 +163,21 @@
 
         function qtdefrete(datainicial,datafinal){
             $.get("/operacional/get/pedidoqtdetfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_qtde_tipofrete);
                 data = JSON.parse(res).pedido_qtde_tipofrete;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -180,16 +190,21 @@
 
         function qtdecarga(datainicial,datafinal){
             $.get("/operacional/get/pedidoqtdetcarga?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_qtde_tipocarga);
                 data = JSON.parse(res).pedido_qtde_tipocarga;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -202,16 +217,21 @@
 
         function qtderota(datainicial,datafinal){
             $.get("/operacional/get/pedidoqtderota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_qtde_rota);
                 data = JSON.parse(res).pedido_qtde_rota;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-4').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',

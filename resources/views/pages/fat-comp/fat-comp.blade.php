@@ -55,7 +55,7 @@
                             <canvas id="chart-bar-1"></canvas>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="col-md-12 col-lg-12">
                      <div class="main-card mb-3 card">
@@ -113,16 +113,21 @@
         function compfiscal(ano){
             console.log(ano);
             $.get("/fat-comp/get/compfatfiscal?ano="+ano, function (res) {
-                console.log(JSON.parse(res).comp_fatfiscal);
                 data = JSON.parse(res).comp_fatfiscal;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-bar-1').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -135,16 +140,21 @@
 
         function compgerencial(ano){
             $.get("/fat-comp/get/compfatgerencial?ano="+ano, function (res) {
-                console.log(JSON.parse(res).comp_fatgerencial);
                 data = JSON.parse(res).comp_fatgerencial;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-bar-2').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',

@@ -122,18 +122,22 @@
         }
 
         function liqtcarga(datainicial,datafinal){
-            console.log(datainicial);
             $.get("/operacional/get/pedidolucroliqtcarga?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                console.log(JSON.parse(res).pedido_lucroliquido);
                 data = JSON.parse(res).pedido_lucroliquido;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -146,16 +150,21 @@
 
         function liqtfrete(datainicial,datafinal){
             $.get("/operacional/get/pedidolucroliqtfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_lucroliq_tfrete);
                 data = JSON.parse(res).pedido_lucroliq_tfrete;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -168,16 +177,21 @@
 
         function liqrota(datainicial,datafinal){
             $.get("/operacional/get/pedidolucroliqrota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_lucroliq_rota);
                 data = JSON.parse(res).pedido_lucroliq_rota;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',

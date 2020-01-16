@@ -110,18 +110,22 @@
         }
 
         function brutcarga(datainicial,datafinal){
-            console.log(datainicial);
             $.get("/operacional/get/pedidolucrobrutcarga?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                console.log(JSON.parse(res).pedido_lucrobruto);
                 data = JSON.parse(res).pedido_lucrobruto;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
@@ -134,16 +138,21 @@
 
         function brutfrete(datainicial,datafinal){
             $.get("/operacional/get/pedidolucrobrutfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                console.log(JSON.parse(res).pedido_qtde_tipofrete);
                 data = JSON.parse(res).pedido_qtde_tipofrete;
+                let label = new Array();
+                let valor = new Array();
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
                 var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                        labels: [data[0].LABEL, data[1].LABEL],
+                        labels: label,
                         datasets: [{
                             label: 'Gráfico de Dados',
-                            data: [data[0].VALOR, data[1].VALOR],
+                            data: valor,
                             backgroundColor: [
                                 'rgba(50, 202, 50)',
                                 'rgba(167, 159, 159, 1)',
