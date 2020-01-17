@@ -13,6 +13,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- /meta -->
     <title>MMSoftwares</title>
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="/imgs/fav-icon.png" type="image/x-icon">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ asset('Icon-font-7/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">

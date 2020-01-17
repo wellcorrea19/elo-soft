@@ -32,8 +32,8 @@
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header" style="height: 15vh;">
                             <div class="m-auto">
-                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
                                 <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
+                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
                                 <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolha Uma Data</a>
                             </div>
                         </div>
@@ -55,19 +55,7 @@
                             <canvas id="chart-doughnut-1"></canvas>
                         </div>
                     </div>
-                    <div class="main-card mb-3 card">
-                        <div class="card-header-tab card-header">
-                            <div class="card-header-title m-auto">
-                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                Relatório Operacional Por Tipo De Frete
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="chart-doughnut-2"></canvas>
-                        </div>
-                    </div>
                 </div>
-
                 <div class="col-md-12 col-lg-6">
                     <div class="mb-3 card">
                         <div class="card-header-tab card-header">
@@ -78,6 +66,20 @@
                         </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-3"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-lg-12">
+                    <div class="main-card mb-3 card">
+                        <div class="card-header-tab card-header">
+                            <div class="card-header-title m-auto">
+                                <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
+                                Relatório Operacional Por Tipo De Frete
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="chart-doughnut-2"></canvas>
                         </div>
                     </div>
                     <div class="mb-3 card">
@@ -100,6 +102,18 @@
     <script type="text/javascript">
         moment.locale('pt-br');
         var actualData, _actualData;
+
+        function gera_cor(){
+            var hexadecimais = '0123456789ABCDEF';
+            var cor = '#';
+
+            // Pega um número aleatório no array acima
+            for (var i = 0; i < 6; i++ ) {
+                //E concatena à variável cor
+                cor += hexadecimais[Math.floor(Math.random() * 16)];
+            }
+            return cor;
+        }
 
         function mes_atual() {
             actualData = moment().startOf("Month").format('DD/MM/YYYY');
@@ -139,9 +153,11 @@
                 data = JSON.parse(res).pedido_qtde_modalidade;
                 let label = new Array();
                 let valor = new Array();
+                let color = new Array();
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
+                    color.push(gera_cor());
                 }
                 var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -151,10 +167,7 @@
                         datasets: [{
                             label: 'Gráfico de Dados',
                             data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
+                            backgroundColor: color,
                         }]
                     },
                 });
@@ -166,9 +179,11 @@
                 data = JSON.parse(res).pedido_qtde_tipofrete;
                 let label = new Array();
                 let valor = new Array();
+                let color = new Array();
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
+                    color.push(gera_cor());
                 }
                 var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -178,10 +193,7 @@
                         datasets: [{
                             label: 'Gráfico de Dados',
                             data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
+                            backgroundColor: color,
                         }]
                     },
                 });
@@ -193,9 +205,11 @@
                 data = JSON.parse(res).pedido_qtde_tipocarga;
                 let label = new Array();
                 let valor = new Array();
+                let color = new Array();
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
+                    color.push(gera_cor());
                 }
                 var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -205,10 +219,7 @@
                         datasets: [{
                             label: 'Gráfico de Dados',
                             data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
+                            backgroundColor: color,
                         }]
                     },
                 });
@@ -220,9 +231,11 @@
                 data = JSON.parse(res).pedido_qtde_rota;
                 let label = new Array();
                 let valor = new Array();
+                let color = new Array();
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
+                    color.push(gera_cor());
                 }
                 var ctx = document.getElementById('chart-doughnut-4').getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -232,10 +245,7 @@
                         datasets: [{
                             label: 'Gráfico de Dados',
                             data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
+                            backgroundColor: color,
                         }]
                     },
                 });
@@ -246,7 +256,7 @@
 
     <!-- Script calendario -->
     <script type="text/javascript">
-        mes_anterior();
+        mes_atual();
 
         $(function() {
             $('#data_costum').daterangepicker(
