@@ -32,8 +32,8 @@
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header" style="height: 15vh;">
                             <div class="m-auto">
-                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
                                 <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
+                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
                                 <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolha Uma Data</a>
                             </div>
                         </div>
@@ -86,109 +86,21 @@
                                         <canvas id="chart-bar"></canvas>
                                     </div>
                                     <h6 class="card-title" style="margin: 20px;">Ranking Clientes</h6>
-                                    <div class="scroll-area-sm">
-                                        <div class="scrollbar-container">
-                                            <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Ella-Rose Henry</div>
-                                                                <!-- <div class="widget-subheading">Web Developer</div> -->
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pr-1">$</small>
-                                                                    <span>129</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Ruben Tillman</div>
-                                                                <!-- <div class="widget-subheading">UI Designer</div> -->
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pr-1">$</small>
-                                                                    <span>54</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Vinnie Wagstaff</div>
-                                                                <!-- <div class="widget-subheading">Java Programmer</div> -->
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pr-1">$</small>
-                                                                    <span>429</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Ella-Rose Henry</div>
-                                                                <!-- <div class="widget-subheading">Web Developer</div> -->
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pr-1">$</small>
-                                                                    <span>129</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="widget-content p-0">
-                                                        <div class="widget-content-wrapper">
-                                                            <div class="widget-content-left mr-3">
-                                                            </div>
-                                                            <div class="widget-content-left">
-                                                                <div class="widget-heading">Ruben Tillman</div>
-                                                                <!-- <div class="widget-subheading">UI Designer</div> -->
-                                                            </div>
-                                                            <div class="widget-content-right">
-                                                                <div class="font-size-xlg text-muted">
-                                                                    <small class="opacity-5 pr-1">$</small>
-                                                                    <span>54</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <ul id="rank-1"
+                                        class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
+                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
                                     </div>
-                                    <div class="widget-chart-content text-center mt-5">
+                                    <div class="ps__rail-y" style="top: 0px; height: 200px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 173px;"></div>
+                                    </div>
+                                    <!-- <div class="widget-chart-content text-center mt-5">
                                         <div class="widget-description mt-0 text-warning">
                                             <i class="fa fa-arrow-left"></i>
                                             <span class="pl-1">175.5%</span>
                                             <span class="text-muted opacity-8 pl-1">Nos últimos meses</span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -202,7 +114,140 @@
     <script type="text/javascript">
         moment.locale('pt-br');
         var actualData, _actualData;
+        var chart1, chart2, chart3;
 
+        Chart.defaults.global.tooltips.callbacks.label = function(tooltipItem, data) {
+            var dataset = data.datasets[tooltipItem.datasetIndex];
+            var datasetLabel = dataset.label || '';
+            return datasetLabel + ": R$" + parseFloat(dataset.data[tooltipItem.index]).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        };
+
+
+        function faturamento(datainicial,datafinal){
+            if(chart1 !== undefined){chart1.destroy();}
+            $.get("/faturamento/get/fiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+                let data = JSON.parse(res).fatfiscal;
+                let label = new Array();
+                let valor = new Array();
+                $('#chart-doughnut-1').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
+
+                let ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                chart1 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: [
+                                'rgba(50, 202, 50)',
+                                'rgba(167, 159, 159, 1)',
+                            ],
+                        }]
+                    },
+                });
+            });
+        }
+
+        function gerencialcliente(datainicial,datafinal){
+            if(chart2 !== undefined){chart2.destroy();}
+            $.get("/faturamento/get/gerencialcliente?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).fatgerencial_cliente;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#rank-1').html('');
+                $('#chart-bar').html('');
+                for (i in data) {
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                    var HTMLNovo = '<li class="list-group-item">' +
+                        '<div class="widget-content p-0">' +
+                        '<div class="widget-content-wrapper">' +
+                        '<div class="widget-content-left mr-3"></div>' +
+                        '<div class="widget-content-left">' +
+                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                        '</div>' +
+                        '<div class="widget-content-right">' +
+                        '<div class="font-size-xlg text-muted">' +
+                        '<small class="opacity-5 pr-1">R$</small>' +
+                        '<span>' +  parseFloat(data[i].VALOR).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    $('#rank-1').append(HTMLNovo);
+                }
+                let ctx = document.getElementById('chart-bar').getContext('2d');
+                let options = {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function (value, index, values) {
+                                    if (parseInt(value) >= 1000) {
+                                        return 'R$' +  parseFloat(value).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                                    } else {
+                                        return 'R$' + value;
+                                    }
+                                }
+                            }
+                        }],
+                        xAxes: [{
+                            display: false
+                        }],
+                    }
+                };
+                chart2 = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                    options: options
+                });
+            });
+        }
+
+        function gerencial(datainicial,datafinal){
+            if(chart3 !== undefined){chart3.destroy();}
+            $.get("/faturamento/get/gerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).fatgerencial;
+                let label = new Array();
+                let valor = new Array();
+                $('#chart-doughnut-2').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
+                let ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                chart3 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: [
+                                'rgba(50, 202, 50)',
+                                'rgba(167, 159, 159, 1)',
+                            ],
+                        }]
+                    },
+                });
+            });
+        }
         function mes_atual() {
             actualData = moment().startOf("Month").format('DD/MM/YYYY');
             _actualData = moment().format('DD/MM/YYYY');
@@ -234,93 +279,23 @@
             gerencialcliente(startDate,lastDate);
         }
 
-        function faturamento(datainicial,datafinal){
-            console.log(datainicial);
-            $.get("/faturamento/get/fiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                let data = JSON.parse(res).fatfiscal;
-                let label = new Array();
-                let valor = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                }
+        function gera_cor(){
+            var hexadecimais = '0123456789ABCDEF';
+            var cor = '#';
 
-                var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
-                        }]
-                    },
-                });
-            });
+            // Pega um número aleatório no array acima
+            for (var i = 0; i < 6; i++ ) {
+                //E concatena à variável cor
+                cor += hexadecimais[Math.floor(Math.random() * 16)];
+            }
+            return cor;
         }
 
-        function gerencialcliente(datainicial,datafinal){
-            $.get("/faturamento/get/gerencialcliente?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).fatgerencial_cliente;
-                let label = new Array();
-                let valor = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                }
-                var ctx = document.getElementById('chart-bar').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
-                        }]
-                    },
-                });
-            });
-        }
-
-        function gerencial(datainicial,datafinal){
-            $.get("/faturamento/get/gerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).fatgerencial;
-                let label = new Array();
-                let valor = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                }
-                var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
-                        }]
-                    },
-                });
-            });
-        }
     </script>
 
     <!-- Script calendario -->
     <script type="text/javascript">
-        mes_anterior();
+        mes_atual();
 
         $(function() {
             $('#data_costum').daterangepicker(

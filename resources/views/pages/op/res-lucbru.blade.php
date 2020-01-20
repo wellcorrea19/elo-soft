@@ -32,8 +32,8 @@
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header" style="height: 15vh;">
                             <div class="m-auto">
-                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
                                 <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
+                                <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
                                 <a href="#" id="data_costum" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt" >Escolha Uma Data</a>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
             <!--  -->
 
             <div class="row">
-                <div class="col-md-12 col-lg-6">
+                <div class="col-md-12 col-lg-12">
                     <div class="main-card mb-6 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
@@ -55,8 +55,7 @@
                             <canvas id="chart-doughnut-1"></canvas>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12 col-lg-6">
+                    <br>
                     <div class="main-card mb-6 card">
                         <div class="card-header-tab card-header">
                             <div class="card-header-title m-auto">
@@ -78,6 +77,76 @@
     <script type="text/javascript">
         moment.locale('pt-br');
         var actualData, _actualData;
+        var chart1, chart2;
+
+
+        function brutcarga(datainicial,datafinal){
+            if(chart1 !== undefined){chart1.destroy();}
+            $.get("/operacional/get/pedidolucrobrutcarga?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+                data = JSON.parse(res).pedido_lucrobruto;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-1').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                chart1 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
+
+        function brutfrete(datainicial,datafinal){
+            if(chart2 !== undefined){chart2.destroy();}
+            $.get("/operacional/get/pedidolucrobrutfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).pedido_lucrobru_tfrete;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-2').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                chart2 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
+
+        function gera_cor(){
+            var hexadecimais = '0123456789ABCDEF';
+            var cor = '#';
+
+            // Pega um número aleatório no array acima
+            for (var i = 0; i < 6; i++ ) {
+                //E concatena à variável cor
+                cor += hexadecimais[Math.floor(Math.random() * 16)];
+            }
+            return cor;
+        }
 
         function mes_atual() {
             actualData = moment().startOf("Month").format('DD/MM/YYYY');
@@ -109,65 +178,11 @@
             brutfrete(startDate,lastDate);
         }
 
-        function brutcarga(datainicial,datafinal){
-            $.get("/operacional/get/pedidolucrobrutcarga?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                data = JSON.parse(res).pedido_lucrobruto;
-                let label = new Array();
-                let valor = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                }
-                var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
-                        }]
-                    },
-                });
-            });
-        }
-
-        function brutfrete(datainicial,datafinal){
-            $.get("/operacional/get/pedidolucrobrutfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).pedido_qtde_tipofrete;
-                let label = new Array();
-                let valor = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                }
-                var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
-                        }]
-                    },
-                });
-            });
-        }
-
     </script>
 
     <!-- Script calendario -->
     <script type="text/javascript">
-        mes_anterior();
+        mes_atual();
 
         $(function() {
             $('#data_costum').daterangepicker(

@@ -90,6 +90,7 @@
                     </div>
                     <div class="md-form mb-5">
                         <i class="fas fa-building prefix grey-text"></i>
+<<<<<<< HEAD
                         <label data-error="wrong" data-success="right" for="orangeForm-cnpj">CNPJ</label>
                         <input type="text" id="orangeForm-cnpj" class="form-control ">
                     </div>
@@ -98,20 +99,24 @@
                         <i class="fas fa-building prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="orangeForm-name">Nome</label>
                         <input type="text" id="orangeForm-name" class="form-control ">
+
                     </div>
 
                     <div class="md-form mb-5">
                         <i class="fas fa-envelope prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
                         <input type="email" id="orangeForm-email" class="form-control ">
+
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="md-form mb-4">
                                 <i class="fas fa-cloud-upload-alt prefix grey-text"></i>
+
                                 <label data-error="wrong" data-success="right" for="orangeForm-host">Host</label>
                                 <input type="text" id="orangeForm-host" class="form-control ">
+
                             </div>
                         </div>
 
@@ -121,6 +126,7 @@
                                 <label data-error="wrong" data-success="right" for="orangeForm-limit">Limite de
                                     Usuarios</label>
                                 <input type="text" id="orangeForm-limit" class="form-control ">
+
                             </div>
                         </div>
                     </div>
