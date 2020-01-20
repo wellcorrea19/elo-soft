@@ -88,14 +88,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'UserController@index')->name('user');
         Route::prefix('post')->group(function () {
             Route::post('/user', 'UserController@storeUser')->name('storeUser');
+            Route::post('/company', 'UserController@storeCompany')->name('storeCompany');
+        });
+        Route::prefix('get')->group(function () {
+            Route::get('/companys', 'UserController@listComapanys')->name('listComapanys');
         });
     });
 
 
 
 });
-
-//Route::get('/login', 'Auth\Rest\LoginController@index')->name('login');
 
 Route::post('/loged', 'Auth\Rest\LoginController@login')->name('loged');
 

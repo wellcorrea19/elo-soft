@@ -64,13 +64,8 @@ class LoginController extends Controller
 
             $authe = new User( array( "email" => $email,"password" => bcrypt($password)));
             $authe->setAllAttributes(['name'=>'name']);
-            //$user = new User(["username" => $api.Usuario, "email" => $api.Email]);
             $this->guard()->login($authe);
-            //Auth::login($authe);
-           // dd(Auth::user());
-//            if( $this->guard()->login($authe)){
-//                return Redirect::back ();
-//            }
+            //dd(Auth::user());
            return Redirect::back ();
         } else {
             Session::flash ( 'message', "Invalid Credentials , Please try again." );
