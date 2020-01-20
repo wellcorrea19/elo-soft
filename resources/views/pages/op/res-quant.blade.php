@@ -102,6 +102,119 @@
     <script type="text/javascript">
         moment.locale('pt-br');
         var actualData, _actualData;
+        var chart1, chart2, chart3, chart4;
+
+        function modalidade(datainicial,datafinal){
+            if(chart1 !== undefined){chart1.destroy();}
+            $.get("/operacional/get/pedidoqtdemodalidade?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+                data = JSON.parse(res).pedido_qtde_modalidade;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-1').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                let ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                chart1 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
+
+        function qtdefrete(datainicial,datafinal){
+            if(chart2!== undefined){chart2.destroy();}
+            $.get("/operacional/get/pedidoqtdetfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).pedido_qtde_tipofrete;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-2').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                let ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                chart2 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
+
+        function qtdecarga(datainicial,datafinal){
+            if(chart3 !== undefined){chart3.destroy();}
+            $.get("/operacional/get/pedidoqtdetcarga?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).pedido_qtde_tipocarga;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-3').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                let ctx = document.getElementById('chart-doughnut-3').getContext('2d');
+                chart3 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
+
+        function qtderota(datainicial,datafinal){
+            if(chart4 !== undefined){chart4.destroy();}
+            $.get("/operacional/get/pedidoqtderota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).pedido_qtde_rota;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-4').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                let ctx = document.getElementById('chart-doughnut-4').getContext('2d');
+                chart4 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
 
         function gera_cor(){
             var hexadecimais = '0123456789ABCDEF';
@@ -145,111 +258,6 @@
             qtdefrete(startDate,lastDate);
             qtdecarga(startDate,lastDate);
             qtderota(startDate,lastDate);
-        }
-
-        function modalidade(datainicial,datafinal){
-            console.log(datainicial);
-            $.get("/operacional/get/pedidoqtdemodalidade?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                data = JSON.parse(res).pedido_qtde_modalidade;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                }
-                var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                });
-            });
-        }
-
-        function qtdefrete(datainicial,datafinal){
-            $.get("/operacional/get/pedidoqtdetfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).pedido_qtde_tipofrete;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                }
-                var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                });
-            });
-        }
-
-        function qtdecarga(datainicial,datafinal){
-            $.get("/operacional/get/pedidoqtdetcarga?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).pedido_qtde_tipocarga;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                }
-                var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                });
-            });
-        }
-
-        function qtderota(datainicial,datafinal){
-            $.get("/operacional/get/pedidoqtderota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).pedido_qtde_rota;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                }
-                var ctx = document.getElementById('chart-doughnut-4').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                });
-            });
         }
 
     </script>

@@ -114,18 +114,7 @@
     <script type="text/javascript">
         moment.locale('pt-br');
         var actualData, _actualData;
-
-        function gera_cor(){
-            var hexadecimais = '0123456789ABCDEF';
-            var cor = '#';
-
-            // Pega um número aleatório no array acima
-            for (var i = 0; i < 6; i++ ) {
-                //E concatena à variável cor
-                cor += hexadecimais[Math.floor(Math.random() * 16)];
-            }
-            return cor;
-        }
+        var chart1, chart2, chart3;
 
         Chart.defaults.global.tooltips.callbacks.label = function(tooltipItem, data) {
             var dataset = data.datasets[tooltipItem.datasetIndex];
@@ -133,6 +122,132 @@
             return datasetLabel + ": R$" + parseFloat(dataset.data[tooltipItem.index]).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
         };
 
+
+        function faturamento(datainicial,datafinal){
+            if(chart1 !== undefined){chart1.destroy();}
+            $.get("/faturamento/get/fiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+                let data = JSON.parse(res).fatfiscal;
+                let label = new Array();
+                let valor = new Array();
+                $('#chart-doughnut-1').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
+
+                let ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                chart1 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: [
+                                'rgba(50, 202, 50)',
+                                'rgba(167, 159, 159, 1)',
+                            ],
+                        }]
+                    },
+                });
+            });
+        }
+
+        function gerencialcliente(datainicial,datafinal){
+            if(chart2 !== undefined){chart2.destroy();}
+            $.get("/faturamento/get/gerencialcliente?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).fatgerencial_cliente;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#rank-1').html('');
+                $('#chart-bar').html('');
+                for (i in data) {
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                    var HTMLNovo = '<li class="list-group-item">' +
+                        '<div class="widget-content p-0">' +
+                        '<div class="widget-content-wrapper">' +
+                        '<div class="widget-content-left mr-3"></div>' +
+                        '<div class="widget-content-left">' +
+                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                        '</div>' +
+                        '<div class="widget-content-right">' +
+                        '<div class="font-size-xlg text-muted">' +
+                        '<small class="opacity-5 pr-1">R$</small>' +
+                        '<span>' +  parseFloat(data[i].VALOR).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    $('#rank-1').append(HTMLNovo);
+                }
+                let ctx = document.getElementById('chart-bar').getContext('2d');
+                let options = {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function (value, index, values) {
+                                    if (parseInt(value) >= 1000) {
+                                        return 'R$' +  parseFloat(value).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                                    } else {
+                                        return 'R$' + value;
+                                    }
+                                }
+                            }
+                        }],
+                        xAxes: [{
+                            display: false
+                        }],
+                    }
+                };
+                chart2 = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                    options: options
+                });
+            });
+        }
+
+        function gerencial(datainicial,datafinal){
+            if(chart3 !== undefined){chart3.destroy();}
+            $.get("/faturamento/get/gerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).fatgerencial;
+                let label = new Array();
+                let valor = new Array();
+                $('#chart-doughnut-2').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                }
+                let ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                chart3 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: [
+                                'rgba(50, 202, 50)',
+                                'rgba(167, 159, 159, 1)',
+                            ],
+                        }]
+                    },
+                });
+            });
+        }
         function mes_atual() {
             actualData = moment().startOf("Month").format('DD/MM/YYYY');
             _actualData = moment().format('DD/MM/YYYY');
@@ -164,124 +279,18 @@
             gerencialcliente(startDate,lastDate);
         }
 
-        function faturamento(datainicial,datafinal){
-            console.log(datainicial);
-            $.get("/faturamento/get/fiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                let data = JSON.parse(res).fatfiscal;
-                let label = new Array();
-                let valor = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                }
+        function gera_cor(){
+            var hexadecimais = '0123456789ABCDEF';
+            var cor = '#';
 
-                var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
-                        }]
-                    },
-                });
-            });
+            // Pega um número aleatório no array acima
+            for (var i = 0; i < 6; i++ ) {
+                //E concatena à variável cor
+                cor += hexadecimais[Math.floor(Math.random() * 16)];
+            }
+            return cor;
         }
 
-        function gerencialcliente(datainicial,datafinal){
-            $.get("/faturamento/get/gerencialcliente?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).fatgerencial_cliente;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for (i in data) {
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                    var HTMLNovo = '<li class="list-group-item">' +
-                        '<div class="widget-content p-0">' +
-                        '<div class="widget-content-wrapper">' +
-                        '<div class="widget-content-left mr-3"></div>' +
-                        '<div class="widget-content-left">' +
-                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
-                        '</div>' +
-                        '<div class="widget-content-right">' +
-                        '<div class="font-size-xlg text-muted">' +
-                        '<small class="opacity-5 pr-1">R$</small>' +
-                        '<span>' +  parseFloat(data[i].VALOR).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</li>';
-                    $('#rank-1').append(HTMLNovo);
-                }
-                var ctx = document.getElementById('chart-bar').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true,
-                                    callback: function (value, index, values) {
-                                        if (parseInt(value) >= 1000) {
-                                            return 'R$' +  parseFloat(value).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-                                        } else {
-                                            return 'R$' + value;
-                                        }
-                                    }
-                                }
-                            }],
-                            xAxes: [{
-                                display: false
-                            }],
-                        }
-                    }
-                });
-            });
-        }
-
-        function gerencial(datainicial,datafinal){
-            $.get("/faturamento/get/gerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).fatgerencial;
-                let label = new Array();
-                let valor = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                }
-                var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: [
-                                'rgba(50, 202, 50)',
-                                'rgba(167, 159, 159, 1)',
-                            ],
-                        }]
-                    },
-                });
-            });
-        }
     </script>
 
     <!-- Script calendario -->

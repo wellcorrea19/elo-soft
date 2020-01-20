@@ -89,6 +89,91 @@
     <script type="text/javascript">
         moment.locale('pt-br');
         var actualData, _actualData;
+        var chart1, chart2, chart3;
+
+        function liqtcarga(datainicial,datafinal){
+            if(chart1 !== undefined){chart1.destroy();}
+            $.get("/operacional/get/pedidolucroliqtcarga?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
+                data = JSON.parse(res).pedido_lucroliquido;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-1').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                let ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                chart1 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
+
+        function liqtfrete(datainicial,datafinal){
+            if(chart2 !== undefined){chart2.destroy();}
+            $.get("/operacional/get/pedidolucroliqtfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).pedido_lucroliq_tfrete;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-2').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                let ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                chart2 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
+
+        function liqrota(datainicial,datafinal){
+            if(chart3 !== undefined){chart3.destroy();}
+            $.get("/operacional/get/pedidolucroliqrota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
+                data = JSON.parse(res).pedido_lucroliq_rota;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#chart-doughnut-3').html('');
+                for ( i in data){
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                }
+                let ctx = document.getElementById('chart-doughnut-3').getContext('2d');
+                chart3 = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                });
+            });
+        }
 
         function gera_cor(){
             var hexadecimais = '0123456789ABCDEF';
@@ -131,84 +216,6 @@
             liqtcarga(startDate,lastDate);
             liqtfrete(startDate,lastDate);
             liqrota(startDate,lastDate);
-        }
-
-        function liqtcarga(datainicial,datafinal){
-            $.get("/operacional/get/pedidolucroliqtcarga?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
-                data = JSON.parse(res).pedido_lucroliquido;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                }
-                var ctx = document.getElementById('chart-doughnut-1').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                });
-            });
-        }
-
-        function liqtfrete(datainicial,datafinal){
-            $.get("/operacional/get/pedidolucroliqtfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).pedido_lucroliq_tfrete;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                }
-                var ctx = document.getElementById('chart-doughnut-2').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                });
-            });
-        }
-
-        function liqrota(datainicial,datafinal){
-            $.get("/operacional/get/pedidolucroliqrota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
-                data = JSON.parse(res).pedido_lucroliq_rota;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for ( i in data){
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                }
-                var ctx = document.getElementById('chart-doughnut-3').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                });
-            });
         }
 
     </script>

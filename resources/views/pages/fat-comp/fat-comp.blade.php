@@ -49,6 +49,7 @@
             <!--  -->
 
             <div class="row">
+                <!-- Gráfico 2 -->
                 <div class="col-md-12 col-lg-12">
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header">
@@ -61,13 +62,10 @@
                             <canvas id="chart-bar-1"></canvas>
                         </div>
                         <h6 class="card-title" style="margin: 20px;">Comparativo entre menses</h6>
-                        <div class="scroll-area-sm">
-                            <div class="scrollbar-container">
-                                <ul id="rank-1" class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
-                            </div>
-                        </div>
+                        <ul id="rank-1" class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
                     </div>
                 </div>
+                <!-- Gráfico 2 -->
                 <div class="col-md-12 col-lg-12">
                     <div class="main-card mb-3 card">
                         <div class="card-header-tab card-header">
@@ -80,14 +78,7 @@
                             <canvas id="chart-bar-2"></canvas>
                         </div>
                         <h6 class="card-title" style="margin: 20px;">Comparativo entre meses</h6>
-                        <ul id="rank-2"
-                            class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
-                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                        </div>
-                        <div class="ps__rail-y" style="top: 0px; height: 200px; right: 0px;">
-                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 173px;"></div>
-                        </div>
+                        <ul id="rank-2" class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
                     </div>
                 </div>
             </div>
@@ -99,24 +90,115 @@
     <script type="text/javascript">
         moment.locale('pt-br');
         var actualData, _actualData;
-
-        function gera_cor(){
-            var hexadecimais = '0123456789ABCDEF';
-            var cor = '#';
-
-            // Pega um número aleatório no array acima
-            for (var i = 0; i < 6; i++ ) {
-                //E concatena à variável cor
-                cor += hexadecimais[Math.floor(Math.random() * 16)];
-            }
-            return cor;
-        }
-
+        var chart1, chart2;
+        
         Chart.defaults.global.tooltips.callbacks.label = function(tooltipItem, data) {
             var dataset = data.datasets[tooltipItem.datasetIndex];
             var datasetLabel = dataset.label || '';
             return datasetLabel + ": R$" + parseFloat(dataset.data[tooltipItem.index]).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
         };
+
+        function compfiscal(ano) {
+            if(chart1 !== undefined){chart1.destroy();}
+            $.get("/fat-comp/get/compfatfiscal?ano=" + ano, function (res) {
+                data = JSON.parse(res).comp_fatfiscal;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#rank-1').html('');
+                $('#chart-bar-1').html('');
+                for (i in data) {
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                    rank('#rank-1',data[i]);
+                }
+                let ctx = document.getElementById('chart-bar-1').getContext('2d');
+                let options =  {
+                    responsive: true,
+                        scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function (value, index, values) {
+                                    if (parseInt(value) >= 1000) {
+                                        return 'R$' +  parseFloat(value).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                                    } else {
+                                        return 'R$' + value;
+                                    }
+                                }
+                            }
+                        }],
+                            xAxes: [{
+                            display: false
+                        }],
+                    }
+                };
+                chart1 = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                    options: options
+                });
+            });
+        }
+
+        function compgerencial(ano) {
+            if(chart2 !== undefined){chart2.destroy();}
+            $.get("/fat-comp/get/compfatgerencial?ano=" + ano, function (res) {
+                data = JSON.parse(res).comp_fatgerencial;
+                let label = new Array();
+                let valor = new Array();
+                let color = new Array();
+                $('#rank-2').html('');
+                $('#chart-bar-2').html('');
+                for (i in data) {
+                    label.push(data[i].LABEL);
+                    valor.push(data[i].VALOR);
+                    color.push(gera_cor());
+                    rank('#rank-2',data[i]);
+                }
+                let ctx = document.getElementById('chart-bar-2').getContext('2d');
+                let options =  {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function (value, index, values) {
+                                    if (parseInt(value) >= 1000) {
+                                        return 'R$' +  parseFloat(value).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                                    } else {
+                                        return 'R$' + value;
+                                    }
+                                }
+                            }
+                        }],
+                        xAxes: [{
+                            display: false
+                        }],
+                    }
+                };
+                chart2 = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: label,
+                        datasets: [{
+                            label: 'Gráfico de Dados',
+                            data: valor,
+                            backgroundColor: color,
+                        }]
+                    },
+                    options: options
+                });
+            });
+        }
 
         function ano_atual() {
             actualData = moment().startOf("Year").format('YYYY');
@@ -148,127 +230,35 @@
             compgerencial(startDate, lastDate);
         }
 
-        function compfiscal(ano) {
-            console.log(ano);
-            $.get("/fat-comp/get/compfatfiscal?ano=" + ano, function (res) {
-                data = JSON.parse(res).comp_fatfiscal;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for (i in data) {
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                    var HTMLNovo = '<li class="list-group-item">' +
-                        '<div class="widget-content p-0">' +
-                        '<div class="widget-content-wrapper">' +
-                        '<div class="widget-content-left mr-3"></div>' +
-                        '<div class="widget-content-left">' +
-                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
-                        '</div>' +
-                        '<div class="widget-content-right">' +
-                        '<div class="font-size-xlg text-muted">' +
-                        '<small class="opacity-5 pr-1">R$</small>' +
-                        '<span>' +  parseFloat(data[i].VALOR).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</li>';
-                    $('#rank-1').append(HTMLNovo);
-                }
-                var ctx = document.getElementById('chart-bar-1').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true,
-                                    callback: function (value, index, values) {
-                                        if (parseInt(value) >= 1000) {
-                                            return 'R$' +  parseFloat(value).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-                                        } else {
-                                            return 'R$' + value;
-                                        }
-                                    }
-                                }
-                            }]
-                        }
-                    }
-                });
-            });
+        function gera_cor(){
+            var hexadecimais = '0123456789ABCDEF';
+            var cor = '#';
+            for (var i = 0; i < 6; i++ ) {
+                cor += hexadecimais[Math.floor(Math.random() * 16)];
+            }
+            return cor;
         }
 
-        function compgerencial(ano) {
-            $.get("/fat-comp/get/compfatgerencial?ano=" + ano, function (res) {
-                data = JSON.parse(res).comp_fatgerencial;
-                let label = new Array();
-                let valor = new Array();
-                let color = new Array();
-                for (i in data) {
-                    label.push(data[i].LABEL);
-                    valor.push(data[i].VALOR);
-                    color.push(gera_cor());
-                    var HTMLNovo = '<li class="list-group-item">' +
-                        '<div class="widget-content p-0">' +
+        function rank(id,data) {
+            var HTMLNovo =
+                '<li class="list-group-item">' +
+                    '<div class="widget-content p-0">' +
                         '<div class="widget-content-wrapper">' +
-                        '<div class="widget-content-left mr-3"></div>' +
-                        '<div class="widget-content-left">' +
-                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                            '<div class="widget-content-left mr-3"></div>' +
+                            '<div class="widget-content-left">' +
+                                '<div class="widget-heading">' + data.LABEL + '</div>' +
+                            '</div>' +
+                            '<div class="widget-content-right">' +
+                                '<div class="font-size-xlg text-muted">' +
+                                    '<small class="opacity-5 pr-1">R$</small>' +
+                                    '<span>' +  parseFloat(data.VALOR).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + '</span>' +
+                                '</div>' +
+                            '</div>' +
                         '</div>' +
-                        '<div class="widget-content-right">' +
-                        '<div class="font-size-xlg text-muted">' +
-                        '<small class="opacity-5 pr-1">R$</small>' +
-                        '<span>' + parseFloat(data[i].VALOR).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + '</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</li>';
-                    $('#rank-2').append(HTMLNovo);
-                }
-                var ctx = document.getElementById('chart-bar-2').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: label,
-                        datasets: [{
-                            label: 'Gráfico de Dados',
-                            data: valor,
-                            backgroundColor: color,
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true,
-                                    callback: function (value, index, values) {
-                                        if (parseInt(value) >= 1000) {
-                                            return 'R$' +  parseFloat(value).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-                                        } else {
-                                            return 'R$' + value;
-                                        }
-                                    }
-                                }
-                            }]
-                        }
-                    }
-                });
-            });
+                    '</div>' +
+                '</li>';
+            $(id).append(HTMLNovo);
         }
-
     </script>
 
     <!-- Script calendario -->

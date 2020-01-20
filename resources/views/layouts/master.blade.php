@@ -67,7 +67,7 @@
             </button>
         </div>
     </div>
-    <div class="app-header__menu">
+    <!-- <div class="app-header__menu">
         <span>
             <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
                 <span class="btn-icon-wrapper">
@@ -75,7 +75,7 @@
                 </span>
             </button>
         </span>
-    </div>
+    </div> -->
     <div class="app-header__content">
         <div class="app-header-right">
             <div class="header-btn-lg pr-0">

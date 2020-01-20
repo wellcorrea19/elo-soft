@@ -92,13 +92,13 @@
                     <div class="md-form mb-5">
                         <i class="fas fa-building prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="orangeForm-name">CNPJ</label>
-                        <input type="text" id="orangeForm-name" class="form-control validate">
+                        <input type="text" id="orangeForm-name" class="form-control validate" disabled>
                     </div>
 
                     <div class="md-form mb-5">
                         <i class="fas fa-envelope prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
-                        <input type="email" id="orangeForm-email" class="form-control validate">
+                        <input type="email" id="orangeForm-email" class="form-control validate" disabled>
                     </div>
 
                     <div class="row">
@@ -106,7 +106,7 @@
                             <div class="md-form mb-4">
                                 <i class="fas fa-cloud-upload-alt prefix grey-text"></i>
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Host</label>
-                                <input type="password" id="orangeForm-pass" class="form-control validate">
+                                <input type="password" id="orangeForm-pass" class="form-control validate" disabled>
                             </div>
                         </div>
 
@@ -115,7 +115,7 @@
                                 <i class="fas fa-lock prefix grey-text"></i>
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Limite de
                                     Usuarios</label>
-                                <input type="password" id="orangeForm-pass" class="form-control validate">
+                                <input type="number" id="orangeForm-pass" class="form-control validate" disabled>
                             </div>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                                     <i class="fas fa-lock prefix grey-text"></i>
                                     <label data-error="wrong" data-success="right" for="orangeForm-pass">Limite de
                                         Usuarios</label>
-                                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                                    <input type="number" id="orangeForm-pass" class="form-control validate">
                                 </div>
                             </div>
                         </div>
