@@ -91,7 +91,7 @@
                     <div class="md-form mb-5">
                         <i class="fas fa-building prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="orangeForm-cnpj">CNPJ</label>
-                        <input type="text" id="orangeForm-cnpj" class="form-control ">
+                        <input type="text" id="orangeForm-cnpj" class="form-control " disabled>
                     </div>
 
                     <div class="md-form mb-5">
