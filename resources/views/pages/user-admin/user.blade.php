@@ -49,7 +49,7 @@
                                             <button class="btn-geral btn btn-success" data-toggle="modal" data-target="#modalUsuario">
                                                     <i class="fas fa-plus" style="position: absolute; top: 7px; left: 7px;"></i>
                                             </button>
-                                            <button class="btn-geral btn btn-danger">
+                                            <button class="btn-geral btn btn-danger btn-delete">
                                                 <i class="fas fa-ban" style="position: absolute; top: 7px; left: 6px;"></i>
                                             </button>
                                         </div>
@@ -275,7 +275,7 @@
             $( "li" ).remove( "._users" );
         });
 
-        $(" .btn-danger ").click(function(){
+        $(" .btn-delete ").click(function(){
             $( "li" ).remove("._companys");
         });
 
