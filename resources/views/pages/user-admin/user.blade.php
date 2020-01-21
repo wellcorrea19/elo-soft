@@ -53,7 +53,7 @@
                                                 <i class="fas fa-ban" style="position: absolute; top: 7px; left: 6px;"></i>
                                             </button>
                                         </div>
-                                        <li>
+                                        <li class="_users">
                                             <a style="padding: 0;">
                                                 Usuarios
                                                 <div style="position: absolute; left: 80%; top: 0px;">
@@ -90,7 +90,6 @@
                     </div>
                     <div class="md-form mb-5">
                         <i class="fas fa-building prefix grey-text"></i>
-<<<<<<< HEAD
                         <label data-error="wrong" data-success="right" for="orangeForm-cnpj">CNPJ</label>
                         <input type="text" id="orangeForm-cnpj" class="form-control ">
                     </div>
@@ -125,7 +124,7 @@
                                 <i class="fas fa-lock prefix grey-text"></i>
                                 <label data-error="wrong" data-success="right" for="orangeForm-limit">Limite de
                                     Usuarios</label>
-                                <input type="text" id="orangeForm-limit" class="form-control ">
+                                <input type="number" id="orangeForm-limit" class="form-control ">
 
                             </div>
                         </div>
@@ -179,7 +178,7 @@
                                         <i class="fas fa-lock prefix grey-text"></i>
                                         <label data-error="wrong" data-success="right" for="orangeForm-pass">Limite de
                                             Usuarios</label>
-                                        <input type="text" name="users_limit" id="orangeForm-pass" class="form-control ">
+                                        <input type="number" name="users_limit" id="orangeForm-pass" class="form-control ">
                                     </div>
                                 </div>
                             </div>
@@ -261,6 +260,12 @@
             $('#modalInfoEmpresa #orangeForm-host').val(companys[id].host);
             $('#modalInfoEmpresa #orangeForm-limit').val(companys[id].users_limit);
         }
+    </script>
+
+    <script>
+        $( "button" ).click(function() {
+            $( "li" ).remove( "._users" );
+        });
     </script>
 
 @endsection
