@@ -125,10 +125,15 @@
                                 <label data-error="wrong" data-success="right" for="orangeForm-limit">Limite de
                                     Usuarios</label>
                                 <input type="number" id="orangeForm-limit" class="form-control ">
-
                             </div>
                         </div>
+
                     </div>
+
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button class="btn btn-success">Atualizar</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -229,6 +234,7 @@
         </div>
     </div>
 
+    <!-- STYLE BOTÕES -->
     <style>
         .mb-5 {
             margin-bottom: 1rem !important;
@@ -246,6 +252,7 @@
         }
     </style>
 
+    <!-- SCRIPT LISTAR EMPRESAS -->
     <script>
         var companys;
 
@@ -262,6 +269,7 @@
         }
     </script>
 
+    <!-- BOTÃO EXCLUIR USUARIO -->
     <script>
         $( "button" ).click(function() {
             $( "li" ).remove( "._users" );
