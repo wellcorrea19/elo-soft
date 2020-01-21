@@ -36,7 +36,7 @@
                         <div class="card-body table-responsive">
                             <ul class="vertical-nav-menu" id="css-table">
                                 @foreach ($companys as $company)
-                                    <li style="border-bottom: 0.1px solid rgb(218, 218, 218)">
+                                <li class="_companys" style="border-bottom: 0.1px solid rgb(218, 218, 218)">
                                     <a href="#" style="padding: 0 1.5rem 0 25px;">
                                         {{$company->name}}
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
@@ -274,6 +274,11 @@
         $( "button" ).click(function() {
             $( "li" ).remove( "._users" );
         });
+
+        $(" button ").click(function(){
+            $( "li" ).remove("._companys");
+        });
+
     </script>
 
 @endsection
