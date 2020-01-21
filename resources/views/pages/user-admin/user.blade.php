@@ -37,35 +37,22 @@
                             <ul class="vertical-nav-menu" id="css-table">
                                 @foreach ($companys as $company)
                                 <li class="_companys" style="border-bottom: 0.1px solid rgb(218, 218, 218)">
-                                    <a href="#" style="padding: 0 1.5rem 0 25px;">
+                                    <a href="#"   onclick="listUsers({{$company->id}})" style="padding: 0 1.5rem 0 25px;">
                                         {{$company->name}}
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
-                                    <ul>
+                                    <ul id="company{{$company->id}}">
                                         <div>
                                             <button onclick="loadInf({!! $loop->index !!})" class=" btn-geral btn btn-primary" data-toggle="modal" data-target="#modalInfoEmpresa">
                                                 <i class="fas fa-archive" style="position: absolute; top: 7px; left: 6px;"></i>
                                             </button>
-                                            <button class="btn-geral btn btn-success" data-toggle="modal" data-target="#modalUsuario">
+                                            <button onclick="loadNew({!! $company->id !!})" class="btn-geral btn btn-success" data-toggle="modal" data-target="#modalUsuario">
                                                     <i class="fas fa-plus" style="position: absolute; top: 7px; left: 7px;"></i>
                                             </button>
-                                            <button class="btn-geral btn btn-danger btn-delete">
-                                                <i class="fas fa-ban" style="position: absolute; top: 7px; left: 6px;"></i>
-                                            </button>
+{{--                                            <button class="btn-geral btn btn-danger btn-delete">--}}
+{{--                                                <i class="fas fa-ban" style="position: absolute; top: 7px; left: 6px;"></i>--}}
+{{--                                            </button>--}}
                                         </div>
-                                        <li class="_users">
-                                            <a style="padding: 0;">
-                                                Usuarios
-                                                <div style="position: absolute; left: 80%; top: 0px;">
-                                                    <input type="checkbox" checked data-toggle="toggle" data-size="xs"
-                                                           data-onstyle="success" style="margin-left: 50px;">
-                                                    <button class="btn-delet btn btn-danger">
-                                                        <span
-                                                            style="position: absolute; bottom: -2px; left: 8px;">x</span>
-                                                    </button>
-                                                </div>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </li>
                                 @endforeach
@@ -225,6 +212,7 @@
                                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Senha</label>
                                 <input type="password" name="password" id="orangeForm-pass" class="form-control ">
                             </div>
+                            <input type="hidden" name="company_id" id="orangeForm-company_id" class="form-control">
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button class="btn btn-success">Cadastrar</button>
@@ -255,7 +243,6 @@
     <!-- SCRIPT LISTAR EMPRESAS -->
     <script>
         var companys;
-
         $.get("/user/get/companys", function (res) {
             companys = JSON.parse(res).company;
         });
@@ -267,19 +254,75 @@
             $('#modalInfoEmpresa #orangeForm-host').val(companys[id].host);
             $('#modalInfoEmpresa #orangeForm-limit').val(companys[id].users_limit);
         }
+
+        function loadNew(id) {
+            $('#modalUsuario #orangeForm-company_id').val(id);
+        }
+
+        function updateUser(e) {
+            $.put("/user/put/user", {"_token": "{{csrf_token()}}" , id:e}, function (res) {
+                console.log(JSON.parse(res));
+            });
+        }
+
+        $.put = function(url, data, callback, type){
+
+            if ( $.isFunction(data) ){
+                type = type || callback,
+                    callback = data,
+                    data = {}
+            }
+
+            return $.ajax({
+                url: url,
+                type: 'PUT',
+                success: callback,
+                data: data,
+                contentType: type
+            });
+        }
+
+        function listUsers(id) {
+            $.get("/user/get/users/"+id, function (res) {
+                let users = JSON.parse(res).users;
+                $('#company'+id+ ' li').remove();
+               for(i in users){
+                    let html = '<li class="_users">'+
+                        '<a style="padding: 0;">'+
+                        users[i].name+
+                        '<div style="position: absolute; left: 80%; top: 0px;">'+
+                        '<input type="checkbox" id="_user'+users[i].id+'" checked data-toggle="toggle" data-size="xs" data-onstyle="success" style="margin-left: 50px;">'+
+                        '<button class="btn-delet btn btn-danger">'+
+                        '<span style="position: absolute; bottom: -2px; left: 8px;">x</span>'+
+                        '</button>'+
+                        '</div>'+
+                        '</a>'+
+                        '</li>';
+                    $('#company'+id).append(html);
+                }
+                $('input[id*="_user"]').bootstrapToggle();
+                $('input[id*="_user"]').change(function(e) {
+                    let check = $(e.target).is(':checked');
+                    if(check === false){
+                        updateUser($(e.target).attr('id').replace('_user',''));
+                    }
+                });
+            });
+
+        }
+
+
     </script>
 
     <!-- BOTÃO EXCLUIR USUARIO -->
-    <script>
-        $( "button" ).click(function() {
-            $( "li" ).remove( "._users" );
-        });
-
-        $(" .btn-delete ").click(function(){
-            $( "li" ).remove("._companys");
-        });
-
-    </script>
+{{--    <script>--}}
+{{--        $( "button" ).click(function() {--}}
+{{--            $( "li" ).remove( "._users" );--}}
+{{--        });--}}
+{{--        $(" .btn-delete ").click(function(){--}}
+{{--            $( "li" ).remove("._companys");--}}
+{{--        });--}}
+{{--    </script>--}}
 
 @endsection
 

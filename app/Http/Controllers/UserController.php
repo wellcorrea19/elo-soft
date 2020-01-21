@@ -42,10 +42,34 @@ class UserController extends Controller
 
     }
 
+    public function listUsers(Request $request, $id){
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
+        $res = $client->get('/users?company_id='.$id , Array('headers' => $headers) );
+        return response($res->getBody());
+
+    }
+
+    public function updateUser(Request $request){
+        dd($request->get('id'));
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
+        $res = $client->get('/companys' , Array('headers' => $headers) );
+        return response($res->getBody());
+
+    }
+
     public function storeUser(Request $request){
         $body['name'] =  $request->get('name');
         $body['email'] =  $request->get('email');
         $body['password']=  $request->get('password');
+        $body['company_id']=  $request->get('company_id');
+        $body['active']=  true;
+        $body['admin']=  false;
 
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
