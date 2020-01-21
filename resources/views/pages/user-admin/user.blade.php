@@ -275,7 +275,7 @@
             $( "li" ).remove( "._users" );
         });
 
-        $(" button ").click(function(){
+        $(" .btn-danger ").click(function(){
             $( "li" ).remove("._companys");
         });
 
