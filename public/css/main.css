@@ -10575,7 +10575,7 @@ button,
     font-size: .8rem;
     margin: .75rem 0;
     font-weight: bold;
-    color: #3f6ad8;
+    color: #008000;
     white-space: nowrap;
     position: relative
 }
@@ -11349,7 +11349,7 @@ button,
     left: 9px;
     top: 13px;
     border-radius: 2px;
-    background: #3f6ad8
+    background: #008000;
 }
 
 .search-wrapper .input-holder .search-icon span::after {
@@ -11358,7 +11358,7 @@ button,
     left: 4px;
     top: 0;
     border-radius: 16px;
-    border: 2px solid #3f6ad8
+    border: 2px solid #008000;
 }
 
 .search-wrapper .close {
@@ -22492,7 +22492,7 @@ legend {
 .hamburger.is-active .hamburger-inner,
 .hamburger.is-active .hamburger-inner::before,
 .hamburger.is-active .hamburger-inner::after {
-    background-color: #3f6ad8
+    background-color: #008000;
 }
 
 .hamburger-box {
@@ -22513,7 +22513,7 @@ legend {
 .hamburger-inner::after {
     width: 24px;
     height: 2px;
-    background-color: #3f6ad8;
+    background-color: #008000;
     border-radius: 10px;
     position: absolute;
     transition-property: transform;
