@@ -291,7 +291,7 @@
                     let html = '<li class="_users">'+
                         '<a style="padding: 0;">'+
                         users[i].name+
-                        '<div style="position: absolute; left: 80%; top: 0px;">'+
+                        '<div style="position: absolute; left: 90%; top: 0px;">'+
                         '<input type="checkbox" id="_user'+users[i].id+'" checked data-toggle="toggle" data-size="xs" data-onstyle="success" style="margin-left: 50px;">'+
                         // '<button class="btn-delet btn btn-danger">'+
                         // '<span style="position: absolute; bottom: -2px; left: 8px;">x</span>'+
