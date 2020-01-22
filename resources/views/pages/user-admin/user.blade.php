@@ -49,9 +49,9 @@
                                             <button onclick="loadNew({!! $company->id !!})" class="btn-geral btn btn-success" data-toggle="modal" data-target="#modalUsuario">
                                                     <i class="fas fa-plus" style="position: absolute; top: 7px; left: 7px;"></i>
                                             </button>
-{{--                                            <button class="btn-geral btn btn-danger btn-delete">--}}
-{{--                                                <i class="fas fa-ban" style="position: absolute; top: 7px; left: 6px;"></i>--}}
-{{--                                            </button>--}}
+                                            <button class="btn-geral btn btn-danger btn-delete">
+                                                <i class="fas fa-ban" style="position: absolute; top: 7px; left: 6px;"></i>
+                                            </button>
                                         </div>
                                     </ul>
                                 </li>
@@ -63,6 +63,7 @@
             </div>
         </div>
     </div>
+    
 
     <!-- MODAL INFORMAÇÕES EMPRESA -->
     <div class="modal fade" id="modalInfoEmpresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -292,9 +293,9 @@
                         users[i].name+
                         '<div style="position: absolute; left: 80%; top: 0px;">'+
                         '<input type="checkbox" id="_user'+users[i].id+'" checked data-toggle="toggle" data-size="xs" data-onstyle="success" style="margin-left: 50px;">'+
-                        '<button class="btn-delet btn btn-danger">'+
-                        '<span style="position: absolute; bottom: -2px; left: 8px;">x</span>'+
-                        '</button>'+
+                        // '<button class="btn-delet btn btn-danger">'+
+                        // '<span style="position: absolute; bottom: -2px; left: 8px;">x</span>'+
+                        // '</button>'+
                         '</div>'+
                         '</a>'+
                         '</li>';

@@ -299,7 +299,7 @@
                         "firstDay": 1
                     }
                 }, function (start, end, label) {
-                    data_custom(start.format('DD/MM/YYYY'), end.format('DD/MM/YYYY'));
+                    data_custom(start.format('YYYY'), end.format('YYYY'));
                 });
         });
     </script>
