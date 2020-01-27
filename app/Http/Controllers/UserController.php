@@ -20,24 +20,18 @@ class UserController extends Controller
     }
 
     public function index(){
-        $token =  session('token');
-        $headers = [ 'Authorization' => "Bearer $token" ];
-        $client = new Client(['base_url' =>  env('API_URL')]);
-        $client->setDefaultOption('verify', base_path() . env('SSL'));
-        $res = $client->get('/companys' , Array('headers' => $headers) );
-        $response = json_decode($res->getBody(), FALSE);
-
+        $companys =json_decode( $this->listComapanys()->content(),false);
         return view('pages.user-admin.user',
-            array('companys'=>$response->company)
+            array('companys'=>$companys->company)
         );
     }
 
-    public function listComapanys(Request $request){
+    public function listComapanys(){
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', base_path() . env('SSL'));
-        $res = $client->get('/companys' , Array('headers' => $headers) );
+        $res = $client->get('/companys?id=' , Array('headers' => $headers) );
         return response($res->getBody());
 
     }
