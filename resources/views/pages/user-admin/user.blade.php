@@ -49,7 +49,7 @@
                                             <button onclick="loadNew({!! $company->id !!})" class="btn-geral btn btn-success" data-toggle="modal" data-target="#modalUsuario">
                                                     <i class="fas fa-plus" style="position: absolute; top: 7px; left: 7px;"></i>
                                             </button>
-                                            <button class="btn-geral btn btn-danger btn-delete">
+                                            <button onclick="disableCompany({!! $company->id !!})" class="btn-geral btn btn-danger btn-delete">
                                                 <i class="fas fa-ban" style="position: absolute; top: 7px; left: 6px;"></i>
                                             </button>
                                         </div>
@@ -126,7 +126,6 @@
 
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -266,7 +265,7 @@
                     users_limit: $('#updateCompany #orangeForm-limit').val()
                 },
                 function (res) {
-                    // $('#modalInfoEmpresa').modal('hide');
+                    location.reload();
                 });
         });
 
