@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function () {
         });
         Route::prefix('put')->group(function () {
             Route::put('/user', 'UserController@updateUser')->name('updateUser');
+            Route::put('/company', 'UserController@updateCompany')->name('updateCompany');
         });
     });
 

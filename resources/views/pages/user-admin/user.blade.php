@@ -63,66 +63,70 @@
             </div>
         </div>
     </div>
-    
+
 
     <!-- MODAL INFORMAÇÕES EMPRESA -->
     <div class="modal fade" id="modalInfoEmpresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" style="padding-left: 0px;">
         <div class="modal-dialog" role="document">
+
             <div class="modal-content">
-                <div>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="modal-body mx-3">
-                    </div>
-                    <div class="md-form mb-5">
-                        <i class="fas fa-building prefix grey-text"></i>
-                        <label data-error="wrong" data-success="right" for="orangeForm-cnpj">CNPJ</label>
-                        <input type="text" id="orangeForm-cnpj" class="form-control " disabled>
-                    </div>
-
-                    <div class="md-form mb-5">
-                        <i class="fas fa-building prefix grey-text"></i>
-                        <label data-error="wrong" data-success="right" for="orangeForm-name">Nome</label>
-                        <input type="text" id="orangeForm-name" class="form-control ">
-
-                    </div>
-
-                    <div class="md-form mb-5">
-                        <i class="fas fa-envelope prefix grey-text"></i>
-                        <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
-                        <input type="email" id="orangeForm-email" class="form-control ">
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="md-form mb-4">
-                                <i class="fas fa-cloud-upload-alt prefix grey-text"></i>
-
-                                <label data-error="wrong" data-success="right" for="orangeForm-host">Host</label>
-                                <input type="text" id="orangeForm-host" class="form-control ">
-
-                            </div>
+                <form  id="updateCompany">
+                    <div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="modal-body mx-3">
+                        </div>
+                        <div class="md-form mb-5">
+                            <i class="fas fa-building prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="orangeForm-cnpj">CNPJ</label>
+                            <input type="text" id="orangeForm-cnpj" class="form-control " disabled>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="md-form mb-4">
-                                <i class="fas fa-lock prefix grey-text"></i>
-                                <label data-error="wrong" data-success="right" for="orangeForm-limit">Limite de
-                                    Usuarios</label>
-                                <input type="number" id="orangeForm-limit" class="form-control ">
+                        <div class="md-form mb-5">
+                            <i class="fas fa-building prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="orangeForm-name">Nome</label>
+                            <input type="text" id="orangeForm-name" class="form-control ">
+
+                        </div>
+
+                        <div class="md-form mb-5">
+                            <i class="fas fa-envelope prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
+                            <input type="email" id="orangeForm-email" class="form-control ">
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-cloud-upload-alt prefix grey-text"></i>
+
+                                    <label data-error="wrong" data-success="right" for="orangeForm-host">Host</label>
+                                    <input type="text" id="orangeForm-host" class="form-control ">
+
+                                </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="md-form mb-4">
+                                    <i class="fas fa-lock prefix grey-text"></i>
+                                    <label data-error="wrong" data-success="right" for="orangeForm-limit">Limite de
+                                        Usuarios</label>
+                                    <input type="number" id="orangeForm-limit" class="form-control ">
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="hidden" id="orangeForm-id" class="form-control ">
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button class="btn btn-success">Atualizar</button>
                         </div>
 
                     </div>
+                </form>
 
-                    <div class="modal-footer d-flex justify-content-center">
-                        <button class="btn btn-success">Atualizar</button>
-                    </div>
-
-                </div>
             </div>
         </div>
     </div>
@@ -243,12 +247,31 @@
 
     <!-- SCRIPT LISTAR EMPRESAS -->
     <script>
+        var users;
         var companys;
         $.get("/user/get/companys", function (res) {
             companys = JSON.parse(res).company;
         });
 
+        $('#updateCompany').submit(function(e){
+            e.preventDefault();
+            $.put("/user/put/company",
+                {
+                    "_token": "{{csrf_token()}}",
+                    id:$('#updateCompany #orangeForm-id').val(),
+                    cnpj:$('#updateCompany #orangeForm-cnpj').val(),
+                    name:$('#updateCompany #orangeForm-name').val(),
+                    email:$('#updateCompany #orangeForm-email').val(),
+                    host:$('#updateCompany #orangeForm-host').val(),
+                    users_limit: $('#updateCompany #orangeForm-limit').val()
+                },
+                function (res) {
+                    // $('#modalInfoEmpresa').modal('hide');
+                });
+        });
+
         function loadInf(id) {
+            $('#modalInfoEmpresa #orangeForm-id').val(companys[id].id);
             $('#modalInfoEmpresa #orangeForm-cnpj').val(companys[id].cnpj);
             $('#modalInfoEmpresa #orangeForm-name').val(companys[id].name);
             $('#modalInfoEmpresa #orangeForm-email').val(companys[id].email);
@@ -261,10 +284,23 @@
         }
 
         function updateUser(e) {
-            $.put("/user/put/user", {"_token": "{{csrf_token()}}" , id:e}, function (res) {
-                console.log(JSON.parse(res));
+            let user =users.find(obj => obj.id == e);
+            $.put("/user/put/user",
+                {
+                    "_token": "{{csrf_token()}}",
+                    name:user.name,
+                    email:user.email,
+                    company_id:user.company_id,
+                    id:e,
+                    admin: user.admin,
+                    active:!user.active
+                },
+            function (res) {
+                let user = JSON.parse(res);
+                listUsers(user.company_id);
             });
         }
+
 
         $.put = function(url, data, callback, type){
 
@@ -285,28 +321,31 @@
 
         function listUsers(id) {
             $.get("/user/get/users/"+id, function (res) {
-                let users = JSON.parse(res).users;
+                users = JSON.parse(res).users;
                 $('#company'+id+ ' li').remove();
-               for(i in users){
-                    let html = '<li class="_users">'+
-                        '<a style="padding: 0;">'+
-                        users[i].name+
-                        '<div style="position: absolute; left: 90%; top: 0px;">'+
-                        '<input type="checkbox" id="_user'+users[i].id+'" checked data-toggle="toggle" data-size="xs" data-onstyle="success" style="margin-left: 50px;">'+
-                        // '<button class="btn-delet btn btn-danger">'+
-                        // '<span style="position: absolute; bottom: -2px; left: 8px;">x</span>'+
-                        // '</button>'+
-                        '</div>'+
-                        '</a>'+
+                for(i in users){
+                    let data_toggle;
+                    if(users[i].active===true){
+                        data_toggle = 'checked';
+                    }else{
+                        data_toggle = '';
+                    }
+
+                    let html =
+                        '<li class="_users">'+
+                            '<a style="padding: 0;">'+
+                                users[i].name+
+                                '<div style="position: absolute; left: 90%; top: 0px;">'+
+                                    '<input type="checkbox" id="_user'+users[i].id+'" data-onstyle="success"  data-toggle="toggle" data-size="xs" '+
+                                    data_toggle + ' style="margin-left: 50px;">'+
+                                '</div>'+
+                            '</a>'+
                         '</li>';
                     $('#company'+id).append(html);
                 }
                 $('input[id*="_user"]').bootstrapToggle();
                 $('input[id*="_user"]').change(function(e) {
-                    let check = $(e.target).is(':checked');
-                    if(check === false){
-                        updateUser($(e.target).attr('id').replace('_user',''));
-                    }
+                    updateUser($(e.target).attr('id').replace('_user',''));
                 });
             });
 

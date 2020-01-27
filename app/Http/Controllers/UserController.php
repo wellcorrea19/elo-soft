@@ -47,14 +47,38 @@ class UserController extends Controller
     }
 
     public function updateUser(Request $request){
-        dd($request->get('id'));
+
+        $body['name']= $request->get('name');
+        $body['email']= $request->get('email');
+        $body['active']=  $request->get('active');
+        $body['admin']=  $request->get('admin');
+        $body['company_id']= $request->get('company_id');
+
         $token =  session('token');
         $headers = [ 'Authorization' => "Bearer $token" ];
         $client = new Client(['base_url' =>  env('API_URL')]);
         $client->setDefaultOption('verify', base_path() . env('SSL'));
-        $res = $client->get('/companys' , Array('headers' => $headers) );
-        return response($res->getBody());
+        $res = $client->put('/users?id='.$request->get('id') , Array('headers' => $headers,'json' => $body) );
 
+        return response($res->getBody());
+    }
+
+    public function updateCompany(Request $request){
+        $body['id']= $request->get('id');
+        $body['cnpj']= $request->get('cnpj');
+        $body['name']=  $request->get('name');
+        $body['email']=  $request->get('email');
+        $body['host']= $request->get('host');
+        $body['users_limit']= $request->get('users_limit');
+        $body['active']= true;
+
+        $token =  session('token');
+        $headers = [ 'Authorization' => "Bearer $token" ];
+        $client = new Client(['base_url' =>  env('API_URL')]);
+        $client->setDefaultOption('verify', base_path() . env('SSL'));
+        $res = $client->put('/companys' , Array('headers' => $headers,'json' => $body));
+
+        return response($res->getBody());
     }
 
     public function storeUser(Request $request){
