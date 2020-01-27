@@ -9,7 +9,7 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
 
-.border-primary {
+ .border-primary {
     border-color: #3f6ad8
 }
 
@@ -10544,7 +10544,8 @@ button,
 
 .app-sidebar .scrollbar-sidebar {
     z-index: 15;
-    width: 100%
+    width: 100%;
+    overflow: auto !important;
 }
 
 .app-sidebar .app-sidebar-bg {
@@ -24165,7 +24166,8 @@ a.fc-more:hover {
         display: none
     }
     .sidebar-mobile-open .app-sidebar {
-        transform: translateX(0)
+        transform: translateX(0);
+        overflow: auto;
     }
     .sidebar-mobile-open .app-sidebar .app-sidebar__inner .app-sidebar__heading {
         text-indent: initial
