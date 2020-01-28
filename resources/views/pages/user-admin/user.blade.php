@@ -49,9 +49,9 @@
                                             <button onclick="loadNew({!! $company->id !!})" class="btn-geral btn btn-success" data-toggle="modal" data-target="#modalUsuario">
                                                     <i class="fas fa-plus" style="position: absolute; top: 7px; left: 7px;"></i>
                                             </button>
-                                            <button onclick="disableCompany({!! $company->id !!})" class="btn-geral btn btn-danger btn-delete">
+                                            <!-- <button onclick="disableCompany({!! $company->id !!})" class="btn-geral btn btn-danger btn-delete">
                                                 <i class="fas fa-ban" style="position: absolute; top: 7px; left: 6px;"></i>
-                                            </button>
+                                            </button> -->
                                         </div>
                                     </ul>
                                 </li>

@@ -14,11 +14,14 @@
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Bootstrap core CSS -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <!--  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/style-responsive.css" rel="stylesheet">
-
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/style-responsive.css" rel="stylesheet">
+    <script src="{{ url('js/manifest.min.js') }}"></script>
+    <script src="{{ url('js/vendor.min.js') }}"></script>
+    <script src="{{ url('/js/app.js') }}"></script>
     <!-- =======================================================
       Template Name: Dashio
       Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -33,7 +36,7 @@
             @csrf
             <h2 class="form-login-heading">Efetue seu login!</h2>
             <div class="login-wrap">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="email" autofocus placeholder="Email">
+                <input id="email" type="email" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="email" autofocus placeholder="Email">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -47,10 +50,11 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-                <label class="checkbox">
+                
+                <label class="checkbox" style="width: 100%; margin: 10px 0;">
                     <input type="checkbox" value="remember-me" name="remember" id="remember"  {{ old('remember') ? 'checked' : '' }}> Lembrar-me
-                    <span class="pull-right">
-                        <a data-toggle="modal" href="login#myModal"> Esqueceu a senha?</a>
+                    <span style=" position: relative; left: calc(50% - 60px)">
+                        <a data-toggle="modal" href="#" data-target="#myModal"> Esqueceu a senha?</a>
                     </span>
                 </label>
                 <button class="btn btn-theme btn-block" href="/" type="submit"><i class="fa fa-lock"></i> Logar</button>
@@ -63,20 +67,20 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+            <div aria-hidden="true" aria-labelledby="myModal" role="dialog" tabindex="-1" id="myModal" class="modal fade">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
+                            <h4 class="modal-title">Esqueceu sua senha ?</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Forgot Password ?</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Enter your e-mail address below to reset your password.</p>
+                            <p>Digite seu endereço de email para alterar sua senha.</p>
                             <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
                         </div>
                         <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                            <button class="btn btn-theme" type="button">Submit</button>
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                            <button class="btn btn-theme" type="button">Enviar</button>
                         </div>
                     </div>
                 </div>
