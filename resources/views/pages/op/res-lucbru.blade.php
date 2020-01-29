@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                     <div class="main-card mb-3 card">
-                        <div class="card-header-tab card-header" style="height: 15vh;">
+                        <div class="card-header-tab card-header">
                             <div class="m-auto">
                                 <a href="#" id="mes_anterior" class="ml-1 btn-pill btn-wide border-0 btn-transition  btn btn-outline-alternate second-tab-toggle-alt"  onclick="mes_anterior();">Mes Anterior</a>
                                 <a href="#" id="mes_atual" class="border-0 btn-pill btn-wide btn-transition  btn btn-outline-alternate" onclick="mes_atual();">Mes Atual</a>
