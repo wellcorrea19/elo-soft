@@ -36,6 +36,7 @@
             @csrf
             <h2 class="form-login-heading">Efetue seu login!</h2>
             <div class="login-wrap">
+                {{session('error')}}
                 <input id="email" type="email" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="email" autofocus placeholder="Email">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -50,7 +51,7 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-                
+
                 <label class="checkbox" style="width: 100%; margin: 10px 0;">
                     <input type="checkbox" value="remember-me" name="remember" id="remember"  {{ old('remember') ? 'checked' : '' }}> Lembrar-me
                     <span style=" position: relative; left: calc(50% - 60px)">

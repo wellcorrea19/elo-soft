@@ -100,7 +100,7 @@
                         </div> -->
                         <div class="widget-content-left  ml-3 header-user-info">
                             <div class="widget-heading">
-                                {{Auth::user()->email}}
+                                {{ Session::get('name')}}
                             </div>
                             <!-- <div class="widget-subheading">
                                 Designer GrÃ¡fico
@@ -122,59 +122,66 @@
         <div class="scrollbar-sidebar">
             <div class="app-sidebar__inner">
                 <ul class="vertical-nav-menu">
-                    <li class="app-sidebar__heading">Dashboard</li>
-                    <li>
-                        <a href="/" @if (Route::is('dashboard')) class="mm-active"  @endif>
-                            <i class="metismenu-icon pe-7s-home"></i>
-                            Home
-                        </a>
+                    <li class="app-sidebar__heading text-black-50 d-xl-none">
+                        {{ Session::get('name')}}
                     </li>
-                    <li class="app-sidebar__heading">Power BI</li>
-                    <li>
-                        <a href="{{route('faturamento')}}" @if (Route::is('faturamento')) class="mm-active"  @endif>
-                            <i class="metismenu-icon pe-7s-graph"></i>
-                            Faturamento
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{route('fat-comp')}}" @if (Route::is('fat-comp')) class="mm-active"  @endif>
-                            <i class="metismenu-icon pe-7s-graph1"></i>
-                            Faturamento Comparativo
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="metismenu-icon pe-7s-graph3"></i>
-                            Operacional
-                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="{{route('resultquant')}}"  @if (Route::is('resultquant')) class="mm-active" @endif>
-                                    <i class="metismenu-icon"></i>
-                                    Resultado Quantitativo
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('resultlucbru')}}"  @if (Route::is('resultlucbru')) class="mm-active" @endif>
-                                    <i class="metismenu-icon"></i>
-                                    Resultado Lucro Bruto
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('resultlucliq')}}"  @if (Route::is('resultlucliq')) class="mm-active" @endif>
-                                    <i class="metismenu-icon"></i>
-                                    Resultado Lucro Liquido
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{{route('user')}}" @if (Route::is('user')) class="mm-active"  @endif>
-                            <i class="metismenu-icon pe-7s-add-user"></i>
-                            Cadastros
-                        </a>
-                    </li>
+                    @if (session('admin') === false)
+                        <li class="app-sidebar__heading">Dashboard</li>
+                        <li>
+                            <a href="/" @if (Route::is('dashboard')) class="mm-active"  @endif>
+                                <i class="metismenu-icon pe-7s-home"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li class="app-sidebar__heading">Power BI</li>
+                        <li>
+                            <a href="{{route('faturamento')}}" @if (Route::is('faturamento')) class="mm-active"  @endif>
+                                <i class="metismenu-icon pe-7s-graph"></i>
+                                Faturamento
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('fat-comp')}}" @if (Route::is('fat-comp')) class="mm-active"  @endif>
+                                <i class="metismenu-icon pe-7s-graph1"></i>
+                                Faturamento Comparativo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-graph3"></i>
+                                Operacional
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{route('resultquant')}}"  @if (Route::is('resultquant')) class="mm-active" @endif>
+                                        <i class="metismenu-icon"></i>
+                                        Resultado Quantitativo
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('resultlucbru')}}"  @if (Route::is('resultlucbru')) class="mm-active" @endif>
+                                        <i class="metismenu-icon"></i>
+                                        Resultado Lucro Bruto
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('resultlucliq')}}"  @if (Route::is('resultlucliq')) class="mm-active" @endif>
+                                        <i class="metismenu-icon"></i>
+                                        Resultado Lucro Liquido
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="app-sidebar__heading">Power BI</li>
+                        <li>
+                            <a href="{{route('user')}}" @if (Route::is('user')) class="mm-active"  @endif>
+                                <i class="metismenu-icon pe-7s-add-user"></i>
+                                Cadastros
+                            </a>
+                        </li>
+                    @endif
                     <li class="app-sidebar__heading">Configurações</li>
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}"
