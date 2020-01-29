@@ -74,7 +74,7 @@ class LoginController extends Controller
             $token = $user->token;
             session(['token' => $token]);
         }catch (RequestException $e){
-            session(['error'=>'Usuario ou senha incorretos']);
+            session(['loginError'=>'Usuario ou senha incorretos']);
             $user = false;
         }
 
