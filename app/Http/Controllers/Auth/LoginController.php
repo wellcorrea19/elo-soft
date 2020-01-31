@@ -72,7 +72,12 @@ class LoginController extends Controller
             $res = $client->post(env('API_URL').'/sessions', Array('json' => $auth) );
             $user= json_decode($res->getBody());
             $token = $user->token;
-            session(['token' => $token]);
+            if ($user->user->active === false){
+                session( ['loginError'=>'Usuario desativado']);
+            }else{
+                session(['token' => $token]);
+            }
+
         }catch (RequestException $e){
             session(['loginError'=>'Usuario ou senha incorretos']);
             $user = false;
@@ -91,7 +96,6 @@ class LoginController extends Controller
         $email =  $request->get('user');
         $password =  $request->get('password');
         $user = $this->token($email,$password);
-
         if ( session ('token') ) {
 
             $authe = new User( array( "email" => 'rogeriorossa@hotmail.com',"password" => bcrypt('12345678')));
@@ -124,6 +128,8 @@ class LoginController extends Controller
         $this->guard()->logout();
 
         $request->session()->invalidate();
+
+        session()->forget(['token','name','email','admin','active']);
 
         return $this->loggedOut($request) ?: redirect('/');
     }
