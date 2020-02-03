@@ -332,7 +332,7 @@
 
                     let html =
                         '<li class="_users">'+
-                            '<a style="padding: 0;">'+
+                            '<a style="padding: 0; color: black; font-weight: bold;">'+
                                 users[i].name+
                                 '<div style="position: absolute; left: 90%; top: 0px;">'+
                                     '<input type="checkbox" id="_user'+users[i].id+'" data-onstyle="success"  data-toggle="toggle" data-size="xs" '+
