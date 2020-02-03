@@ -46,7 +46,7 @@
                                             <button onclick="loadInf({!! $loop->index !!})" class=" btn-geral btn btn-primary" data-toggle="modal" data-target="#modalInfoEmpresa">
                                                 <i class="fas fa-archive" style="position: absolute; top: 7px; left: 6px;"></i>
                                             </button>
-                                            <button onclick="loadNew({!! $company->id !!})" class="btn-geral btn btn-success" data-toggle="modal" data-target="#modalUsuario">
+                                            <button onclick="loadNew({!! $company->id !!})" class="btn-geral btn btn-success user" data-toggle="modal" data-target="#modalUsuario">
                                                     <i class="fas fa-plus" style="position: absolute; top: 7px; left: 7px;"></i>
                                             </button>
                                             <!-- <button onclick="disableCompany({!! $company->id !!})" class="btn-geral btn btn-danger btn-delete">
@@ -248,6 +248,7 @@
     <script>
         var users;
         var companys;
+        var activeUsers;
         $.get("/user/get/companys", function (res) {
             companys = JSON.parse(res).company;
         });
@@ -341,6 +342,14 @@
                             '</a>'+
                         '</li>';
                     $('#company'+id).append(html);
+                }
+                activeUsers =  users.filter(function(user) {
+                    return user.active == true;
+                });
+                console.log();
+                let company = companys.find(obj => obj.id = id);
+                if(activeUsers.length >= company.users_limit){
+                    $('#company'+id+ ' .user').attr('disabled','disabled');
                 }
                 $('input[id*="_user"]').bootstrapToggle();
                 $('input[id*="_user"]').change(function(e) {
