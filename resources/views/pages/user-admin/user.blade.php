@@ -319,6 +319,8 @@
             });
         }
 
+
+
         function listUsers(id) {
             $.get("/user/get/users/"+id, function (res) {
                 users = JSON.parse(res).users;
@@ -343,18 +345,20 @@
                         '</li>';
                     $('#company'+id).append(html);
                 }
-                activeUsers =  users.filter(function(user) {
-                    return user.active == true;
-                });
-                console.log();
-                let company = companys.find(obj => obj.id = id);
-                if(activeUsers.length >= company.users_limit){
-                    $('#company'+id+ ' .user').attr('disabled','disabled');
-                }
+
                 $('input[id*="_user"]').bootstrapToggle();
                 $('input[id*="_user"]').change(function(e) {
                     updateUser($(e.target).attr('id').replace('_user',''));
                 });
+
+                let activeUsers =  users.filter(function(user) {
+                    return user.active == true;
+                });
+                let company = companys.find(obj => obj.id == id);
+                if(activeUsers.length >= company.users_limit){
+                    $('#company'+id+ ' .user').attr('disabled','disabled');
+                }
+
             });
 
         }
