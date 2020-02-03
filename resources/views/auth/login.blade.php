@@ -7,11 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>MMSoftwares</title>
+    <title>MM SOFTWARES</title>
 
     <!-- Favicons -->
     <link href="img/favicon.png" rel="icon">
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fav Icon -->
+    <link rel="shortcut icon" href="/imgs/fav-icon.png" type="image/x-icon">
 
     <!-- Bootstrap core CSS -->
     <link href="../css/styles.css" rel="stylesheet">

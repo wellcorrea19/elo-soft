@@ -12,7 +12,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- /meta -->
-    <title>MMSoftwares</title>
+    <title>MM SOFTWARES</title>
     <!-- Fav Icon -->
     <link rel="shortcut icon" href="/imgs/fav-icon.png" type="image/x-icon">
     <!-- Fonts -->
