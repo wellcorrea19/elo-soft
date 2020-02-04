@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -95,18 +96,33 @@ class LoginController extends Controller
     public function login(Request $request) {
         $email =  $request->get('user');
         $password =  $request->get('password');
+        $remember=  $request->get('remember');
         $user = $this->token($email,$password);
+
         if ( session ('token') ) {
 
             $authe = new User( array( "email" => 'rogeriorossa@hotmail.com',"password" => bcrypt('12345678')));
             $authe->setAllAttributes(['name'=>'name']);
-            $this->guard()->login($authe);
+            $this->guard()->login($authe,false);
             session(['name' => $user->user->name]);
             session(['email' => $user->user->email]);
             session(['admin' => $user->user->admin]);
             session(['active' => $user->user->active]);
+
             //$authe->setAllAttributes(['name'=>,'email'=>$user->user->email]);
             //dd(Auth::user());
+
+            if ($remember === 'on'){
+                Cookie::queue('email', $email);
+                Cookie::queue('auth', $password);
+                Cookie::queue('rememberme', $remember);
+            }
+
+            if ($remember === null){
+                Cookie::queue(Cookie::forget('email'));
+                Cookie::queue(Cookie::forget('auth'));
+                Cookie::queue(Cookie::forget('rememberme'));
+            }
 
            return Redirect::back ();
         } else {

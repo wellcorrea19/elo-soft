@@ -91,7 +91,7 @@
         moment.locale('pt-br');
         var actualData, _actualData;
         var chart1, chart2;
-        
+
         Chart.defaults.global.tooltips.callbacks.label = function(tooltipItem, data) {
             var dataset = data.datasets[tooltipItem.datasetIndex];
             var datasetLabel = dataset.label || '';
@@ -266,6 +266,7 @@
         ano_atual();
 
         $(function () {
+
             $('#data_costum').daterangepicker(
                 {
                     "locale": {
@@ -296,11 +297,22 @@
                             "Novembro",
                             "Dezembro"
                         ],
-                        "firstDay": 1
-                    }
+                        "firstDay": 1,
+
+                    },
+
                 }, function (start, end, label) {
                     data_custom(start.format('YYYY'), end.format('YYYY'));
+            });
+            $('#data_costum input').each(function () {
+                $(this).datepicker({
+                    autoclose: true,
+                    format: " yyyy",
+                    viewMode: "years",
+                    minViewMode: "years"
                 });
+                $(this).datepicker('clearDates');
+            });
         });
     </script>
 

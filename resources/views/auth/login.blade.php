@@ -40,14 +40,15 @@
             <h2 class="form-login-heading">Efetue seu login!</h2>
             <div class="login-wrap">
                 {{session('loginError')}}
-                <input id="email" type="email" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="email" autofocus placeholder="Email">
+
+                <input id="email" type="email" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ Cookie::get('email') !== null ? Cookie::get('email') : old('user') }}" required autocomplete="email" autofocus placeholder="Email">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
                 <br>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Senha">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ Cookie::get('auth') !== null ? Cookie::get('auth') : old('password') }}" required autocomplete="current-password" placeholder="Senha">
 
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -56,7 +57,7 @@
                 @enderror
 
                 <label class="checkbox" style="width: 100%; margin: 10px 0;">
-                    <input type="checkbox" value="remember-me" name="remember" id="remember"  {{ old('remember') ? 'checked' : '' }}> Lembrar-me
+                    <input type="checkbox"  name="remember" id="remember"  {{ old('remember') || Cookie::get('rememberme') ? 'checked' : '' }}> Lembrar-me
                     <span style=" position: relative; left: calc(50% - 60px)">
                         <a data-toggle="modal" href="#" data-target="#myModal"> Esqueceu a senha?</a>
                     </span>
@@ -80,7 +81,7 @@
                         </div>
                         <div class="modal-body">
                             <p>Digite seu endereço de email para alterar sua senha.</p>
-                            <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                            <input type="text" name="email"  placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
                         </div>
                         <div class="modal-footer">
                             <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
