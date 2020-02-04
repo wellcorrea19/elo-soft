@@ -15216,7 +15216,7 @@ a.badge-alternate:focus {
 .card-header.card-header-tab .card-header-title {
     display: flex;
     align-items: center;
-    white-space: nowrap
+    white-space: inherit;
 }
 
 .card-header .header-icon {
