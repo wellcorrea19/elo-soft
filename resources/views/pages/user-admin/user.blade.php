@@ -12,7 +12,7 @@
                         </div>
                         <div>Cadastros</div>
                     </div>
-                    <div class="page-title-actions">
+                    <!-- <div class="page-title-actions">
                         <div class="app-header-left">
                             <div class="search-wrapper">
                                 <div class="input-holder">
@@ -22,7 +22,7 @@
                                 <button class="close"></button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             @include('pages/flash-message/flash-message')
@@ -44,7 +44,7 @@
                                     <ul id="company{{$company->id}}">
                                         <div>
                                             <button onclick="loadInf({!! $loop->index !!})" class=" btn-geral btn btn-primary" data-toggle="modal" data-target="#modalInfoEmpresa">
-                                                <i class="fas fa-archive" style="position: absolute; top: 7px; left: 6px;"></i>
+                                                <i class="fas fa-pencil-alt" style="position: absolute; top: 7px; left: 6px;"></i>
                                             </button>
                                             <button onclick="loadNew({!! $company->id !!})" class="btn-geral btn btn-success user" data-toggle="modal" data-target="#modalUsuario">
                                                     <i class="fas fa-plus" style="position: absolute; top: 7px; left: 7px;"></i>
@@ -121,7 +121,9 @@
                         </div>
                         <input type="hidden" id="orangeForm-id" class="form-control ">
                         <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-success">Atualizar</button>
+                            <button class="btn btn-success" style="border-radius: 50px;">
+                                <i class="fas fa-check"></i>
+                            </button>
                         </div>
 
                     </div>

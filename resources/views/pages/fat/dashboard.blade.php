@@ -12,7 +12,7 @@
                         </div>
                         <div>Faturamentos</div>
                     </div>
-                    <div class="page-title-actions">
+                    <!-- <div class="page-title-actions">
                         <div class="app-header-left">
                             <div class="search-wrapper">
                                 <div class="input-holder">
@@ -22,7 +22,7 @@
                                 <button class="close"></button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -45,14 +45,24 @@
             <div class="row">
                 <div class="col-md-12 col-lg-6">
                     <div class="main-card mb-3 card">
-                        <div class="card-header-tab card-header">
+                        <div class="card-header-tab card-header" >
                             <div class="card-header-title m-auto">
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
                                 Faturamento Fiscal
                             </div>
                         </div>
+                        <div class="card-body animate-bottom" id="loader1">
+                        </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-1"></canvas>
+                        </div>
+                        <ul id="rank-2"
+                            class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps__rail-y" style="top: 0px; height: 200px; right: 0px;">
+                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 173px;"></div>
                         </div>
                     </div>
                 </div>
@@ -65,8 +75,18 @@
                                 Faturamento Gerencial
                             </div>
                         </div>
+                        <div class="card-body animate-bottom" id="loader2">
+                        </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-2"></canvas>
+                        </div>
+                        <ul id="rank-3"
+                            class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps__rail-y" style="top: 0px; height: 200px; right: 0px;">
+                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 173px;"></div>
                         </div>
                     </div>
                 </div>
@@ -78,6 +98,8 @@
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
                                 Faturamento Gerencial Por Cliente
                             </div>
+                        </div>
+                        <div class="card-body animate-bottom" id="loader3">
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="tab-eg-55">
@@ -123,19 +145,52 @@
         };
 
 
+        // GRAFICO FATURAMENTOS
         function faturamento(datainicial,datafinal){
-            if(chart1 !== undefined){chart1.destroy();}
+            if(chart1 !== undefined){chart1.destroy()
+            document.getElementById("loader1").style.display = "block";}
             $.get("/faturamento/get/fiscal?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
                 let data = JSON.parse(res).fatfiscal;
                 let label = new Array();
                 let valor = new Array();
                 $('#chart-doughnut-1').html('');
+                $('#rank-2').html('');
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
+                    var HTMLNovo = '<li class="list-group-item">' +
+                        '<div class="widget-content p-0">' +
+                        '<div class="widget-content-wrapper">' +
+                        '<div class="widget-content-left mr-3"></div>' +
+                        '<div class="widget-content-left">' +
+                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                        '</div>' +
+                        '<div class="widget-content-right">' +
+                        '<div class="font-size-xlg text-muted">' +
+                        '<small class="opacity-5 pr-1">R$</small>' +
+                        '<span>' +  parseFloat(data[i].VALOR).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    $('#rank-2').append(HTMLNovo);
                 }
 
                 let ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                document.getElementById("loader1").style.display = "none";
+                let options = {
+                    responsive: true,
+                    tooltips: {
+                        beginAtZero: true,
+                        callbacks: {
+                            label: function (tooltipItems, data) {
+                                return data.labels[tooltipItems.index] + ' - ' + 'R$' + data.datasets[0].data[tooltipItems.index].replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                            }
+
+                        }
+                    }
+                };
                 chart1 = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
@@ -149,12 +204,15 @@
                             ],
                         }]
                     },
+                    options: options
                 });
             });
         }
 
+        // GRAFICO GERENCIAL CLIENTE
         function gerencialcliente(datainicial,datafinal){
-            if(chart2 !== undefined){chart2.destroy();}
+            if(chart2 !== undefined){chart2.destroy()
+            document.getElementById("loader3").style.display = "block";}
             $.get("/faturamento/get/gerencialcliente?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
                 data = JSON.parse(res).fatgerencial_cliente;
                 let label = new Array();
@@ -185,6 +243,7 @@
                     $('#rank-1').append(HTMLNovo);
                 }
                 let ctx = document.getElementById('chart-bar').getContext('2d');
+                document.getElementById("loader3").style.display = "none";
                 let options = {
                     responsive: true,
                     scales: {
@@ -220,18 +279,51 @@
             });
         }
 
+        // GRAFICO GERENCIAL
         function gerencial(datainicial,datafinal){
-            if(chart3 !== undefined){chart3.destroy();}
+            if(chart3 !== undefined){chart3.destroy()
+            document.getElementById("loader2").style.display = "block";}
             $.get("/faturamento/get/gerencial?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
                 data = JSON.parse(res).fatgerencial;
                 let label = new Array();
                 let valor = new Array();
                 $('#chart-doughnut-2').html('');
+                $('#rank-3').html('');
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
+                    var HTMLNovo = '<li class="list-group-item">' +
+                        '<div class="widget-content p-0">' +
+                        '<div class="widget-content-wrapper">' +
+                        '<div class="widget-content-left mr-3"></div>' +
+                        '<div class="widget-content-left">' +
+                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                        '</div>' +
+                        '<div class="widget-content-right">' +
+                        '<div class="font-size-xlg text-muted">' +
+                        '<small class="opacity-5 pr-1">R$</small>' +
+                        '<span>' +  parseFloat(data[i].VALOR).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    $('#rank-3').append(HTMLNovo);
                 }
                 let ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                document.getElementById("loader2").style.display = "none";
+                let options = {
+                    responsive: true,
+                    tooltips: {
+                        beginAtZero: true,
+                        callbacks: {
+                            label: function (tooltipItems, data) {
+                                return data.labels[tooltipItems.index] + ' - ' + 'R$' + data.datasets[0].data[tooltipItems.index].replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                            }
+
+                        }
+                    }
+                };
                 chart3 = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
@@ -245,6 +337,7 @@
                             ],
                         }]
                     },
+                    options: options
                 });
             });
         }
@@ -334,6 +427,8 @@
                 data_custom(start.format('DD/MM/YYYY'),end.format('DD/MM/YYYY'));
             });
         });
+
+
     </script>
 
 @endsection

@@ -213,8 +213,8 @@
         <p>
             &copy; Copyrights <strong>MMSoftwares</strong>. Todos os direitos reservados.
         </p>
-        <a href="/#" class="go-top">
-            <i class="fa fa-angle-up"></i>
+        <a href="#" class="go-top">
+            <i class="fa fa-angle-up" style="color: black;"></i>
         </a>
     </div>
 </footer>

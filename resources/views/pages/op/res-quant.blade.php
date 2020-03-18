@@ -12,17 +12,6 @@
                         </div>
                         <div>Resultado Quantitativo</div>
                     </div>
-                    <div class="page-title-actions">
-                        <div class="app-header-left">
-                            <div class="search-wrapper">
-                                <div class="input-holder">
-                                    <input type="text" class="search-input" placeholder="O que você procura?">
-                                    <button class="search-icon"><span></span></button>
-                                </div>
-                                <button class="close"></button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -51,8 +40,18 @@
                                 Relatório Operacional Por Modalidade
                             </div>
                         </div>
+                        <div class="card-body animate-bottom" id="loader1">
+                        </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-1"></canvas>
+                        </div>
+                        <ul id="rank-1"
+                            class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps__rail-y" style="top: 0px; height: 200px; right: 0px;">
+                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 173px;"></div>
                         </div>
                     </div>
                 </div>
@@ -64,8 +63,18 @@
                                 Relatório Operacional Por Tipo De Carga
                             </div>
                         </div>
+                        <div class="card-body animate-bottom" id="loader2">
+                        </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-3"></canvas>
+                        </div>
+                        <ul id="rank-3"
+                            class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps__rail-y" style="top: 0px; height: 200px; right: 0px;">
+                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 173px;"></div>
                         </div>
                     </div>
                 </div>
@@ -78,8 +87,18 @@
                                 Relatório Operacional Por Tipo De Frete
                             </div>
                         </div>
+                        <div class="card-body animate-bottom" id="loader3">
+                        </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-2"></canvas>
+                        </div>
+                        <ul id="rank-2"
+                            class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps__rail-y" style="top: 0px; height: 200px; right: 0px;">
+                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 173px;"></div>
                         </div>
                     </div>
                     <div class="mb-3 card">
@@ -89,8 +108,18 @@
                                 Relatório Operacional Por Rotas
                             </div>
                         </div>
+                        <div class="card-body animate-bottom" id="loader4">
+                        </div>
                         <div class="card-body">
                             <canvas id="chart-doughnut-4"></canvas>
+                        </div>
+                        <ul id="rank-4"
+                            class="rm-list-borders rm-list-borders-scroll list-group list-group-flush"></ul>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                        </div>
+                        <div class="ps__rail-y" style="top: 0px; height: 200px; right: 0px;">
+                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 173px;"></div>
                         </div>
                     </div>
                 </div>
@@ -103,21 +132,58 @@
         moment.locale('pt-br');
         var actualData, _actualData;
         var chart1, chart2, chart3, chart4;
+        
+        Chart.defaults.global.tooltips.callbacks.label = function(tooltipItem, data) {
+            var dataset = data.datasets[tooltipItem.datasetIndex];
+            var datasetLabel = dataset.label || '';
+            return datasetLabel + parseFloat(dataset.data[tooltipItem.index]).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        };
 
         function modalidade(datainicial,datafinal){
-            if(chart1 !== undefined){chart1.destroy();}
+            if(chart1 !== undefined){chart1.destroy()
+            document.getElementById("loader1").style.display = "block";}
             $.get("/operacional/get/pedidoqtdemodalidade?datainicial="+datainicial+"&datafinal="+datafinal , function (res) {
                 data = JSON.parse(res).pedido_qtde_modalidade;
                 let label = new Array();
                 let valor = new Array();
                 let color = new Array();
                 $('#chart-doughnut-1').html('');
+                $('#rank-1').html('');
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
                     color.push(gera_cor());
+                    var HTMLNovo = '<li class="list-group-item">' +
+                        '<div class="widget-content p-0">' +
+                        '<div class="widget-content-wrapper">' +
+                        '<div class="widget-content-left mr-3"></div>' +
+                        '<div class="widget-content-left">' +
+                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                        '</div>' +
+                        '<div class="widget-content-right">' +
+                        '<div class="font-size-xlg text-muted">' +
+                        '<span>' +  parseFloat(data[i].VALOR) + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    $('#rank-1').append(HTMLNovo);
                 }
                 let ctx = document.getElementById('chart-doughnut-1').getContext('2d');
+                document.getElementById("loader1").style.display = "none";
+                let options = {
+                    responsive: true,
+                    tooltips: {
+                        beginAtZero: true,
+                        callbacks: {
+                            label: function (tooltipItems, data) {
+                                return data.labels[tooltipItems.index] + ' - ' + data.datasets[0].data[tooltipItems.index].replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                            }
+
+                        }
+                    }
+                };
                 chart1 = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
@@ -128,24 +194,56 @@
                             backgroundColor: color,
                         }]
                     },
+                    options: options
                 });
             });
         }
 
         function qtdefrete(datainicial,datafinal){
-            if(chart2!== undefined){chart2.destroy();}
+            if(chart2!== undefined){chart2.destroy()
+            document.getElementById("loader2").style.display = "block";}
             $.get("/operacional/get/pedidoqtdetfrete?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
                 data = JSON.parse(res).pedido_qtde_tipofrete;
                 let label = new Array();
                 let valor = new Array();
                 let color = new Array();
                 $('#chart-doughnut-2').html('');
+                $('#rank-2').html('');
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
                     color.push(gera_cor());
+                    var HTMLNovo = '<li class="list-group-item">' +
+                        '<div class="widget-content p-0">' +
+                        '<div class="widget-content-wrapper">' +
+                        '<div class="widget-content-left mr-3"></div>' +
+                        '<div class="widget-content-left">' +
+                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                        '</div>' +
+                        '<div class="widget-content-right">' +
+                        '<div class="font-size-xlg text-muted">' +
+                        '<span>' +  parseFloat(data[i].VALOR) + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    $('#rank-2').append(HTMLNovo);
                 }
                 let ctx = document.getElementById('chart-doughnut-2').getContext('2d');
+                document.getElementById("loader2").style.display = "none";
+                let options = {
+                    responsive: true,
+                    tooltips: {
+                        beginAtZero: true,
+                        callbacks: {
+                            label: function (tooltipItems, data) {
+                                return data.labels[tooltipItems.index] + ' - ' + data.datasets[0].data[tooltipItems.index].replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                            }
+
+                        }
+                    }
+                };
                 chart2 = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
@@ -156,24 +254,56 @@
                             backgroundColor: color,
                         }]
                     },
+                    options: options
                 });
             });
         }
 
         function qtdecarga(datainicial,datafinal){
-            if(chart3 !== undefined){chart3.destroy();}
+            if(chart3 !== undefined){chart3.destroy()
+            document.getElementById("loader3").style.display = "block";}
             $.get("/operacional/get/pedidoqtdetcarga?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
                 data = JSON.parse(res).pedido_qtde_tipocarga;
                 let label = new Array();
                 let valor = new Array();
                 let color = new Array();
                 $('#chart-doughnut-3').html('');
+                $('#rank-3').html('');
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
                     color.push(gera_cor());
+                    var HTMLNovo = '<li class="list-group-item">' +
+                        '<div class="widget-content p-0">' +
+                        '<div class="widget-content-wrapper">' +
+                        '<div class="widget-content-left mr-3"></div>' +
+                        '<div class="widget-content-left">' +
+                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                        '</div>' +
+                        '<div class="widget-content-right">' +
+                        '<div class="font-size-xlg text-muted">' +
+                        '<span>' +  parseFloat(data[i].VALOR) + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    $('#rank-3').append(HTMLNovo);
                 }
                 let ctx = document.getElementById('chart-doughnut-3').getContext('2d');
+                document.getElementById("loader3").style.display = "none";
+                let options = {
+                    responsive: true,
+                    tooltips: {
+                        beginAtZero: true,
+                        callbacks: {
+                            label: function (tooltipItems, data) {
+                                return data.labels[tooltipItems.index] + ' - ' + data.datasets[0].data[tooltipItems.index].replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                            }
+
+                        }
+                    }
+                };
                 chart3 = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
@@ -184,24 +314,56 @@
                             backgroundColor: color,
                         }]
                     },
+                    options: options
                 });
             });
         }
 
         function qtderota(datainicial,datafinal){
-            if(chart4 !== undefined){chart4.destroy();}
+            if(chart4 !== undefined){chart4.destroy()
+            document.getElementById("loader4").style.display = "block";}
             $.get("/operacional/get/pedidoqtderota?datainicial="+datainicial+"&datafinal="+datafinal, function (res) {
                 data = JSON.parse(res).pedido_qtde_rota;
                 let label = new Array();
                 let valor = new Array();
                 let color = new Array();
                 $('#chart-doughnut-4').html('');
+                $('#rank-4').html('');
                 for ( i in data){
                     label.push(data[i].LABEL);
                     valor.push(data[i].VALOR);
                     color.push(gera_cor());
+                    var HTMLNovo = '<li class="list-group-item">' +
+                        '<div class="widget-content p-0">' +
+                        '<div class="widget-content-wrapper">' +
+                        '<div class="widget-content-left mr-3"></div>' +
+                        '<div class="widget-content-left">' +
+                        '<div class="widget-heading">' + data[i].LABEL + '</div>' +
+                        '</div>' +
+                        '<div class="widget-content-right">' +
+                        '<div class="font-size-xlg text-muted">' +
+                        '<span>' +  parseFloat(data[i].VALOR) + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+                    $('#rank-4').append(HTMLNovo);
                 }
                 let ctx = document.getElementById('chart-doughnut-4').getContext('2d');
+                document.getElementById("loader4").style.display = "none";
+                let options = {
+                    responsive: true,
+                    tooltips: {
+                        beginAtZero: true,
+                        callbacks: {
+                            label: function (tooltipItems, data) {
+                                return data.labels[tooltipItems.index] + ' - ' + data.datasets[0].data[tooltipItems.index].replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+                            }
+
+                        }
+                    }
+                };
                 chart4 = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
@@ -212,6 +374,7 @@
                             backgroundColor: color,
                         }]
                     },
+                    options: options
                 });
             });
         }

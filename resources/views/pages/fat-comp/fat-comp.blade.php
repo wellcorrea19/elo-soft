@@ -12,7 +12,7 @@
                         </div>
                         <div>Resultado Faturamento Comparativo</div>
                     </div>
-                    <div class="page-title-actions">
+                    <!-- <div class="page-title-actions">
                         <div class="app-header-left">
                             <div class="search-wrapper">
                                 <div class="input-holder">
@@ -22,7 +22,7 @@
                                 <button class="close"></button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -58,6 +58,8 @@
                                 Relatório Comparativo Fiscal
                             </div>
                         </div>
+                        <div class="card-body animate-bottom" id="loader1">
+                        </div>
                         <div class="card-body">
                             <canvas id="chart-bar-1"></canvas>
                         </div>
@@ -73,6 +75,8 @@
                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
                                 Relatório Comparativo Gerencial
                             </div>
+                        </div>
+                        <div class="card-body animate-bottom" id="loader2">
                         </div>
                         <div class="card-body">
                             <canvas id="chart-bar-2"></canvas>
@@ -99,7 +103,8 @@
         };
 
         function compfiscal(ano) {
-            if(chart1 !== undefined){chart1.destroy();}
+            if(chart1 !== undefined){chart1.destroy()
+            document.getElementById("loader1").style.display = "block";}
             $.get("/fat-comp/get/compfatfiscal?ano=" + ano, function (res) {
                 data = JSON.parse(res).comp_fatfiscal;
                 let label = new Array();
@@ -114,6 +119,7 @@
                     rank('#rank-1',data[i]);
                 }
                 let ctx = document.getElementById('chart-bar-1').getContext('2d');
+                document.getElementById("loader1").style.display = "none";
                 let options =  {
                     responsive: true,
                         scales: {
@@ -150,7 +156,8 @@
         }
 
         function compgerencial(ano) {
-            if(chart2 !== undefined){chart2.destroy();}
+            if(chart2 !== undefined){chart2.destroy()
+            document.getElementById("loader2").style.display = "block";}
             $.get("/fat-comp/get/compfatgerencial?ano=" + ano, function (res) {
                 data = JSON.parse(res).comp_fatgerencial;
                 let label = new Array();
@@ -165,6 +172,7 @@
                     rank('#rank-2',data[i]);
                 }
                 let ctx = document.getElementById('chart-bar-2').getContext('2d');
+                document.getElementById("loader2").style.display = "none";
                 let options =  {
                     responsive: true,
                     scales: {
